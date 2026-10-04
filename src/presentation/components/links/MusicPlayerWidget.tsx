@@ -145,6 +145,8 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`
   }
 
+  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -222,18 +224,38 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
         )}
       </div>
 
-      {/* Audio Progress Slider */}
-      <div className="mt-4 flex flex-col gap-1">
-        <input
-          type="range"
-          min="0"
-          max={duration || 100}
-          value={currentTime}
-          onChange={handleSeek}
-          aria-label="Seek audio position"
-          className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 accent-black transition-all hover:bg-neutral-300"
-        />
-        <div className="flex justify-between text-[11px] font-mono text-neutral-500">
+      {/* Audio Progress Slider with clear played vs unplayed distinction */}
+      <div className="mt-4 flex flex-col gap-1.5">
+        <div className="relative w-full h-3 flex items-center group cursor-pointer">
+          {/* Base Track (Unplayed: light gray) */}
+          <div className="w-full h-1.5 rounded-full bg-neutral-200 overflow-hidden">
+            {/* Filled Track (Played: solid black with sharp contrast) */}
+            <div
+              className="h-full bg-black rounded-full"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+
+          {/* Invisible interactive range input for scrubbing */}
+          <input
+            type="range"
+            min="0"
+            max={duration || 100}
+            step="0.1"
+            value={currentTime}
+            onChange={handleSeek}
+            aria-label="Seek audio position"
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+          />
+
+          {/* Thumb Knob indicator with clear white outline */}
+          <div
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-3.5 w-3.5 rounded-full bg-black border-2 border-white shadow-md pointer-events-none transition-transform group-hover:scale-125"
+            style={{ left: `${Math.min(Math.max(progressPercent, 0), 100)}%` }}
+          />
+        </div>
+
+        <div className="flex justify-between text-[11px] font-mono text-neutral-500 select-none">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
