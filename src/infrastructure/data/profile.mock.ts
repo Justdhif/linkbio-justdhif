@@ -29,7 +29,7 @@ export const mockProfileData: Profile = {
       url: 'https://wa.me/447762422507',
       type: 'classic',
       layout: 'featured',
-      thumbnailUrl: 'https://ugc.production.linktr.ee/72f7896b-5ffa-44dc-a871-1d9b843e626b_WhatsApp-Image-2026-10-03-at-18.30.38.jpeg',
+      thumbnailUrl: '/images/order-products-banner.jpg',
     },
     {
       id: 'link-3',
