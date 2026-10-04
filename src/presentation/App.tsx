@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useProfile } from './hooks/use-profile'
 import { useClipboard } from './hooks/use-clipboard'
 import { TopBar } from './components/common/TopBar'
-import { OrganicBackground } from './components/common/OrganicBackground'
+import { TopographicBackground } from './components/common/TopographicBackground'
 import { HeroAvatar } from './components/header/HeroAvatar'
 import { ProfileHeader } from './components/header/ProfileHeader'
 import { LinkList } from './components/links/LinkList'
@@ -86,14 +86,17 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-[#28533d] sm:bg-[#234b37] font-sans antialiased selection:bg-white selection:text-black flex justify-center items-start sm:py-8 sm:px-4">
+    <div className="relative min-h-screen w-full bg-[#28533d] sm:bg-[#234b37] font-sans antialiased selection:bg-white selection:text-black flex justify-center items-start sm:py-8 sm:px-4 overflow-hidden">
+      {/* Outer Wallpaper Topographic Pattern for Desktop/Wide screens */}
+      <TopographicBackground opacity="opacity-15" />
+
       {/* Toast Notification */}
       <Toast isVisible={showToast} message={toastMessage} />
 
       {/* Desktop Framed Profile Container */}
       <main className="relative w-full max-w-[580px] min-h-screen sm:min-h-0 sm:rounded-[36px] bg-[#346C4F] shadow-2xl overflow-hidden sm:border sm:border-white/10 flex flex-col justify-between">
-        {/* Organic wavy theme background */}
-        <OrganicBackground />
+        {/* Topographic Contour Curves Wallpaper */}
+        <TopographicBackground opacity="opacity-35" />
 
         {/* TopBar attached nicely inside the card header */}
         <TopBar onShareClick={handleShareProfile} />
