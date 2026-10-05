@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useProfile } from './hooks/use-profile'
 import { useClipboard } from './hooks/use-clipboard'
 import { TopBar } from './components/common/TopBar'
@@ -7,6 +7,7 @@ import { TopographicBackground } from './components/common/TopographicBackground
 import { HeroAvatar } from './components/header/HeroAvatar'
 import { ProfileHeader } from './components/header/ProfileHeader'
 import { LinkList } from './components/links/LinkList'
+import { ProductsPageView } from './components/links/ProductsPageView'
 import { ShareModal } from './components/common/ShareModal'
 import { Toast } from './components/common/Toast'
 import { Footer } from './components/footer/Footer'
@@ -16,6 +17,9 @@ import { Loader2 } from 'lucide-react'
 export const App: React.FC = () => {
   const { profile, isLoading, error } = useProfile()
   const { copy, isCopied } = useClipboard()
+
+  // Navigation state between home profile and dedicated products page
+  const [currentView, setCurrentView] = useState<'home' | 'products'>('home')
 
   const [shareModalState, setShareModalState] = useState<{
     isOpen: boolean
@@ -63,15 +67,26 @@ export const App: React.FC = () => {
     }
   }
 
+  const handleNavigateToProducts = () => {
+    setCurrentView('products')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleBackToHome = () => {
+    setCurrentView('home')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#346C4F] text-white">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#346C4F] text-white">
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
         >
           <Loader2 className="h-8 w-8 text-white/80" />
         </motion.div>
+        <p className="mt-3 text-sm font-medium tracking-wide">Memuat profil Justdhif...</p>
       </div>
     )
   }
@@ -101,35 +116,61 @@ export const App: React.FC = () => {
         {/* TopBar attached nicely inside the card header */}
         <TopBar onShareClick={handleShareProfile} />
 
-        <div className="flex flex-col relative z-10">
-          {/* Hero Avatar Header */}
-          <HeroAvatar
-            imageUrl={profile.avatarHeroUrl}
-            alt={profile.displayName}
-          />
+        <AnimatePresence mode="wait">
+          {currentView === 'home' ? (
+            <motion.div
+              key="view-home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-col relative z-10"
+            >
+              {/* Hero Avatar Header */}
+              <HeroAvatar
+                imageUrl={profile.avatarHeroUrl}
+                alt={profile.displayName}
+              />
 
-          {/* Profile Header (Name, Bio, Live Status, Socials) */}
-          <ProfileHeader
-            styledName={profile.displayStyledName}
-            plainName={profile.displayName}
-            bio={profile.bio}
-            isOpenOrder={profile.isOpenOrder}
-            statusText={profile.statusText}
-            socials={profile.socials}
-          />
+              {/* Profile Header (Name, Bio, Live Status, Socials) */}
+              <ProfileHeader
+                styledName={profile.displayStyledName}
+                plainName={profile.displayName}
+                bio={profile.bio}
+                isOpenOrder={profile.isOpenOrder}
+                statusText={profile.statusText}
+                socials={profile.socials}
+              />
 
-          {/* Links, Music, Pricelist, Gallery & FAQ Container */}
-          <div className="mt-4 sm:mt-5 relative z-10">
-            <LinkList
-              links={profile.links}
-              galleries={profile.galleries}
-              musicTrack={profile.musicTrack}
-              pricelist={profile.pricelist}
-              faqs={profile.faqs}
-              onShareLink={handleShareLink}
-            />
-          </div>
-        </div>
+              {/* Links, Music, Products Banner, Gallery & FAQ Container */}
+              <div className="mt-4 sm:mt-5 relative z-10">
+                <LinkList
+                  links={profile.links}
+                  galleries={profile.galleries}
+                  musicTrack={profile.musicTrack}
+                  pricelist={profile.pricelist}
+                  faqs={profile.faqs}
+                  onShareLink={handleShareLink}
+                  onNavigateToProducts={handleNavigateToProducts}
+                />
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="view-products"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col relative z-10 pt-16 sm:pt-20 min-h-[600px]"
+            >
+              <ProductsPageView
+                items={profile.pricelist || []}
+                onBack={handleBackToHome}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Footer */}
         <Footer />

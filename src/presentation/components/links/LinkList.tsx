@@ -8,7 +8,7 @@ import { FeaturedCard } from './FeaturedCard'
 import { ClassicButton } from './ClassicButton'
 import { GalleryWidget } from './GalleryWidget'
 import { MusicPlayerWidget } from './MusicPlayerWidget'
-import { PricelistWidget } from './PricelistWidget'
+import { ProductsBannerCard } from './ProductsBannerCard'
 import { FaqAccordion } from './FaqAccordion'
 
 interface LinkListProps {
@@ -18,6 +18,7 @@ interface LinkListProps {
   pricelist?: PricelistItem[]
   faqs?: FaqItem[]
   onShareLink: (link: LinkItem) => void
+  onNavigateToProducts: () => void
 }
 
 const containerVariants = {
@@ -38,6 +39,7 @@ export const LinkList: React.FC<LinkListProps> = ({
   pricelist = [],
   faqs = [],
   onShareLink,
+  onNavigateToProducts,
 }) => {
   const featuredLinks = links.filter((l) => l.layout === 'featured')
   const classicLinks = links.filter((l) => l.layout === 'stack')
@@ -57,8 +59,13 @@ export const LinkList: React.FC<LinkListProps> = ({
         <FeaturedCard key={link.id} link={link} onShareClick={onShareLink} />
       ))}
 
-      {/* 3. Merged Order My Products & Pricelist Widget */}
-      {pricelist.length > 0 && <PricelistWidget items={pricelist} />}
+      {/* 3. Products Banner Card (Click to open Dedicated Products Page) */}
+      {pricelist.length > 0 && (
+        <ProductsBannerCard
+          totalItems={pricelist.length}
+          onNavigateToProducts={onNavigateToProducts}
+        />
+      )}
 
       {/* 4. Classic Links (Testi & Support) */}
       {classicLinks.map((link) => (
