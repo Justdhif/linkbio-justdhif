@@ -84,12 +84,12 @@ export const mockProfileData: Profile = {
     {
       id: 'faq-3',
       question: 'Berapa lama estimasi pengerjaan pesanan?',
-      answer: 'Untuk produk instan seperti AM Prem atau Nomor Kosong diproses kilat 5–15 menit setelah pembayaran terverifikasi. Untuk jasa Jasbug/Jasban, waktu pengerjaan akan diinfokan langsung oleh admin saat konsultasi.',
+      answer: 'Proses pengerjaan menyesuaikan antrean. Catatan: Jika tidak ada kesibukan, pesanan akan diproses secepat mungkin!',
     },
     {
       id: 'faq-4',
       question: 'Apakah transaksi di Justdhif Store aman & bergaransi?',
-      answer: '100% aman dan bergaransi! Anda bisa melihat rekam jejak dan ratusan bukti transaksi nyata di Saluran Testimoni WhatsApp resmi kami di atas.',
+      answer: 'Iya, transaksi 100% aman dan bergaransi! Karena kami baru memulai store ini, bukti transaksi memang belum terlalu banyak. Namun kamu bisa memantau bukti transaksi dan testimoni langsung di Saluran WhatsApp Testi kami melalui link di atas (atau klik tombol testi).',
     },
   ],
   links: [

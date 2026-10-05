@@ -66,6 +66,18 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                   >
                     <div className="border-t border-black/5 p-3.5 pt-2 text-xs sm:text-[13px] leading-relaxed text-neutral-600 bg-white/60">
                       {item.answer}
+                      {item.id === 'faq-4' && (
+                        <div className="mt-2.5">
+                          <a
+                            href="https://whatsapp.com/channel/0029VbDaoYe0wajpT6EOPx2b"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-full bg-forest px-3 py-1 text-[11px] font-bold text-white shadow-sm hover:brightness-110 transition-all"
+                          >
+                            <span>📢 Masuk Saluran Testimoni WA</span>
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )}
