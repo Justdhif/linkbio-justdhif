@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, MessageSquare, Flame, ShoppingBag, ShieldCheck } from 'lucide-react'
+import { ArrowLeft, MessageSquare, Flame, ShoppingBag, ShieldCheck, CheckCircle2 } from 'lucide-react'
 import { PricelistItem } from '../../../domain/entities/store-features.entity'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
@@ -76,14 +76,20 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
           <span>{t.pricelist.backToHome}</span>
         </motion.button>
 
-        <span className="text-xs font-bold text-emerald-400 bg-black/40 border border-emerald-400/30 px-3 py-1 rounded-full">
-          {t.pricelist.badgeOpen}
-        </span>
+        <a
+          href={getWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 rounded-full bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition-transform hover:scale-105"
+        >
+          <MessageSquare className="h-3.5 w-3.5" />
+          <span>Order via WA</span>
+        </a>
       </div>
 
-      {/* Main Content Box */}
+      {/* Main Container Card */}
       <div className="relative w-full overflow-hidden rounded-[28px] border-2 border-black bg-white shadow-neo text-black">
-        {/* Banner Image Header with exact 16:9 ratio */}
+        {/* Banner Preview matching exact 16:9 ratio */}
         {bannerUrl && (
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100 border-b border-black/10">
             <img
@@ -95,72 +101,101 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
           </div>
         )}
 
-        {/* Product Items List */}
+        {/* Content Section */}
         <div className="p-4 sm:p-5">
-          <div className="mb-3.5 flex items-center justify-between border-b border-neutral-100 pb-3">
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest text-white">
-                <ShoppingBag className="h-4 w-4" />
-              </span>
-              <h3 className="text-sm sm:text-base font-bold text-black uppercase tracking-wider">
-                {language === 'id' ? 'Daftar Layanan & Harga' : 'Services & Pricelist'}
-              </h3>
-            </div>
-            <span className="text-xs font-semibold text-neutral-500">
-              {localizedItems.length} {language === 'id' ? 'Layanan' : 'Items'}
-            </span>
+          {/* Header Title */}
+          <div className="mb-4 pb-3 border-b border-neutral-100">
+            <h2 className="text-base sm:text-lg font-extrabold text-neutral-900 tracking-tight flex items-center gap-2">
+              <ShoppingBag className="h-4 w-4 text-emerald-600" />
+              <span>{t.pricelist.title}</span>
+            </h2>
+            <p className="text-xs text-neutral-500 mt-0.5">
+              {t.pricelist.subtitle}
+            </p>
           </div>
 
-          <div className="flex flex-col gap-2.5">
-            {localizedItems.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between p-3.5 rounded-2xl border border-black/10 bg-neutral-50/80 transition-colors hover:bg-neutral-100/90"
-              >
-                <div className="flex-1 pr-3">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-xs sm:text-sm font-bold text-neutral-900">
-                      {item.name}
-                    </span>
-                    {item.isPopular && (
-                      <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded-md">
-                        <Flame className="h-2.5 w-2.5 fill-rose-500" /> {t.pricelist.bestSeller}
+          {/* Section: Products & Services */}
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
+                <ShoppingBag className="h-3.5 w-3.5 text-emerald-600" />
+                <span>{t.pricelist.sectionTitle}</span>
+              </div>
+              <span className="text-xs font-semibold text-neutral-400">
+                {localizedItems.length} {language === 'id' ? 'Layanan' : 'Items'}
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              {localizedItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between p-3 rounded-2xl border border-black/10 bg-neutral-50 transition-colors hover:bg-neutral-100/80"
+                >
+                  <div className="flex-1 pr-3">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs sm:text-sm font-bold text-neutral-900">
+                        {item.name}
                       </span>
-                    )}
-                    {item.badgeText && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-md shadow-2xs">
-                        <ShieldCheck className="h-3 w-3 text-emerald-600" />
-                        <span>{item.badgeText}</span>
-                      </span>
+                      {item.isPopular && (
+                        <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded-md">
+                          <Flame className="h-2.5 w-2.5 fill-rose-500" /> {t.pricelist.bestSeller}
+                        </span>
+                      )}
+                      {item.badgeText && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-md shadow-2xs">
+                          <ShieldCheck className="h-3 w-3 text-emerald-600" />
+                          <span>{item.badgeText}</span>
+                        </span>
+                      )}
+                    </div>
+                    {item.note && (
+                      <p className="text-[11px] text-neutral-500 mt-1 font-medium">
+                        {item.note}
+                      </p>
                     )}
                   </div>
-                  {item.note && (
-                    <p className="text-[11px] text-neutral-500 mt-0.5 font-medium">
-                      {item.note}
-                    </p>
-                  )}
-                </div>
 
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className="text-xs sm:text-sm font-extrabold text-neutral-950 font-mono">
-                    {item.price}
-                  </span>
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={getWhatsAppUrl(item.name, item.price)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`Order ${item.name}`}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-black text-white text-xs font-bold transition-transform hover:bg-neutral-800"
-                  >
-                    <MessageSquare className="h-3 w-3" />
-                    <span>{t.pricelist.orderBtn}</span>
-                  </motion.a>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-mono font-extrabold text-emerald-600">
+                      {item.price}
+                    </span>
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={getWhatsAppUrl(item.name, item.price)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Order ${item.name}`}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black text-white text-[11px] font-bold transition-transform hover:bg-neutral-800 shadow-2xs"
+                    >
+                      <MessageSquare className="h-3 w-3" />
+                      <span>{t.pricelist.orderBtn}</span>
+                    </motion.a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Note Box */}
+            <div className="mt-3 rounded-xl bg-emerald-50/70 p-2.5 border border-emerald-200/60 text-[11px] text-emerald-950 leading-relaxed font-medium">
+              <CheckCircle2 className="h-3.5 w-3.5 inline mr-1 text-emerald-600" />
+              {t.pricelist.note}
+            </div>
           </div>
+
+          {/* Direct WhatsApp Order Button */}
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            href={getWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-full border-2 border-black bg-emerald-600 py-3 text-xs sm:text-sm font-bold text-white shadow-neo-sm transition-colors hover:bg-emerald-700"
+          >
+            <MessageSquare className="h-4 w-4" />
+            <span>{t.pricelist.bannerCta}</span>
+          </motion.a>
         </div>
       </div>
     </motion.div>

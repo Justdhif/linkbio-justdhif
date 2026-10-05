@@ -46,12 +46,15 @@
   },
   "pricelist": {
     "title": "Order My Products • Pricelist",
+    "subtitle": "Katalog Produk & Layanan Resmi Justdhif Store",
+    "sectionTitle": "Daftar Layanan & Produk",
     "badgeOpen": "Open Order",
     "bannerCta": "Order via WhatsApp",
     "viewProductsCta": "Lihat Daftar Produk & Harga",
     "backToHome": "Kembali ke Beranda",
     "orderBtn": "Order",
     "bestSeller": "Best Seller",
+    "note": "Note: Transaksi 100% aman & bergaransi • Order langsung via WhatsApp resmi • Fast response",
     "items": {
       "nokos": {
         "name": "Nomor Kosong WA",

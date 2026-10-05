@@ -45,7 +45,7 @@ export const ProductsBannerCard: React.FC<ProductsBannerCardProps> = ({
       {/* Bottom Action Strip */}
       <div className="flex items-center justify-between px-5 py-3 sm:py-3.5">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-black text-white shrink-0">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-600 text-white shrink-0 shadow-xs">
             <ShoppingBag className="h-3.5 w-3.5" />
           </span>
           <div className="flex flex-col text-left">

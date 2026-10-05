@@ -46,12 +46,15 @@
   },
   "pricelist": {
     "title": "Order My Products • Pricelist",
+    "subtitle": "Official Products & Services Catalog by Justdhif Store",
+    "sectionTitle": "Products & Services List",
     "badgeOpen": "Open Order",
     "bannerCta": "Order via WhatsApp",
     "viewProductsCta": "View Products & Pricelist",
     "backToHome": "Back to Home",
     "orderBtn": "Order",
     "bestSeller": "Best Seller",
+    "note": "Note: 100% safe transaction & guaranteed • Direct order via official WhatsApp • Fast response",
     "items": {
       "nokos": {
         "name": "Virtual Number WA",
