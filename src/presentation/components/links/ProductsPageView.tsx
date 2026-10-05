@@ -83,23 +83,15 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
 
       {/* Main Content Box */}
       <div className="relative w-full overflow-hidden rounded-[28px] border-2 border-black bg-white shadow-neo text-black">
-        {/* Banner Image Header */}
+        {/* Banner Image Header with exact 16:9 ratio */}
         {bannerUrl && (
-          <div className="relative aspect-[21/9] sm:aspect-[2.2/1] w-full overflow-hidden bg-neutral-100 border-b border-black/10">
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100 border-b border-black/10">
             <img
               src={bannerUrl}
               alt="Order My Products - Justdhif Store"
               className="h-full w-full object-cover"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4 sm:p-5">
-              <h2 className="text-lg sm:text-xl font-extrabold text-white tracking-tight">
-                {t.pricelist.title}
-              </h2>
-              <p className="text-xs text-white/80 mt-0.5">
-                {language === 'id' ? 'Pilih produk di bawah untuk order via WhatsApp' : 'Select a product below to order via WhatsApp'}
-              </p>
-            </div>
           </div>
         )}
 

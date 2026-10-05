@@ -30,8 +30,8 @@ export const ProductsBannerCard: React.FC<ProductsBannerCardProps> = ({
       }}
       className="group relative w-full overflow-hidden rounded-[28px] border-2 border-black bg-white shadow-neo transition-all duration-200 hover:shadow-neo-lg cursor-pointer text-black"
     >
-      {/* Banner Image Preview */}
-      <div className="relative aspect-[21/9] sm:aspect-[2.2/1] w-full overflow-hidden bg-neutral-100">
+      {/* Banner Image Preview with exact 16:9 ratio */}
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100">
         <img
           src={bannerUrl}
           alt="Order My Products - Justdhif Store"
