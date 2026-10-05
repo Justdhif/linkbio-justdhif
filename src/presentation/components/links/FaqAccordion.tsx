@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HelpCircle, ChevronDown } from 'lucide-react'
+import { HelpCircle, ChevronDown, Megaphone } from 'lucide-react'
 import { FaqItem } from '../../../domain/entities/store-features.entity'
 
 interface FaqAccordionProps {
@@ -74,7 +74,8 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 rounded-full bg-forest px-3 py-1 text-[11px] font-bold text-white shadow-sm hover:brightness-110 transition-all"
                           >
-                            <span>📢 Masuk Saluran Testimoni WA</span>
+                            <Megaphone className="h-3 w-3" />
+                            <span>Masuk Saluran Testimoni WA</span>
                           </a>
                         </div>
                       )}

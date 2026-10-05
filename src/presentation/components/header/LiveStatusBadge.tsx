@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Clock, Info, X } from 'lucide-react'
+import { Clock, Info, X, Moon, Coffee, Hourglass, Calendar } from 'lucide-react'
 import { getJakartaLiveStatus, StoreLiveSchedule } from '../../../core/utils/store-schedule'
 
 interface LiveStatusBadgeProps {
@@ -115,26 +115,38 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
                   {/* Weekly Rules Overview */}
                   <div className="mt-3.5 space-y-2 text-xs">
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                      <p className="font-bold text-neutral-800">🌙 Jam Istirahat Malam (Tutup)</p>
-                      <p className="text-[11px] text-neutral-600">Setiap Hari: 21:00 – 07:00 WIB</p>
+                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
+                        <Moon className="h-3.5 w-3.5 text-neutral-700" />
+                        <span>Jam Istirahat Malam (Tutup)</span>
+                      </p>
+                      <p className="text-[11px] text-neutral-600 pl-5">Setiap Hari: 21:00 – 07:00 WIB</p>
                     </div>
 
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                      <p className="font-bold text-neutral-800">🕌 Jam Istirahat & Sholat</p>
-                      <p className="text-[11px] text-neutral-600">Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)</p>
+                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
+                        <Coffee className="h-3.5 w-3.5 text-amber-600" />
+                        <span>Jam Istirahat & Sholat</span>
+                      </p>
+                      <p className="text-[11px] text-neutral-600 pl-5">Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)</p>
                     </div>
 
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                      <p className="font-bold text-neutral-800">⏳ Jam Sibuk (Slow Response)</p>
-                      <p className="text-[11px] text-neutral-600">
+                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
+                        <Hourglass className="h-3.5 w-3.5 text-amber-500" />
+                        <span>Jam Sibuk (Slow Response)</span>
+                      </p>
+                      <p className="text-[11px] text-neutral-600 pl-5">
                         <span className="font-semibold">Senin:</span> 13:00 – 18:00 WIB<br />
                         <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB
                       </p>
                     </div>
 
                     <div className="rounded-lg bg-purple-50 p-2.5 border border-purple-100">
-                      <p className="font-bold text-purple-900">🗓️ Weekend (Sabtu & Minggu)</p>
-                      <p className="text-[11px] text-purple-800">
+                      <p className="font-bold text-purple-900 flex items-center gap-1.5">
+                        <Calendar className="h-3.5 w-3.5 text-purple-700" />
+                        <span>Weekend (Sabtu & Minggu)</span>
+                      </p>
+                      <p className="text-[11px] text-purple-800 pl-5">
                         Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.
                       </p>
                     </div>
