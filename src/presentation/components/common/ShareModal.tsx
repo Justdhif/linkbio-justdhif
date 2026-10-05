@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Copy, Check, Share2, MessageCircle, Send, Twitter } from 'lucide-react'
 
@@ -19,6 +20,16 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   onCopy,
   isCopied,
 }) => {
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = originalOverflow
+      }
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
   const encodedUrl = encodeURIComponent(url)
@@ -58,14 +69,14 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     }
   }
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-0 sm:p-4 backdrop-blur-sm"
+        className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/60 p-0 sm:p-4 backdrop-blur-sm"
       >
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -152,4 +163,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({
       </motion.div>
     </AnimatePresence>
   )
+
+  if (typeof document !== 'undefined') {
+    return createPortal(modalContent, document.body)
+  }
+
+  return modalContent
 }

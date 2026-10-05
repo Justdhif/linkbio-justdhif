@@ -33,6 +33,17 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
     return () => clearInterval(interval)
   }, [])
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      const originalOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = originalOverflow
+      }
+    }
+  }, [showModal])
+
   return (
     <>
       <motion.button
