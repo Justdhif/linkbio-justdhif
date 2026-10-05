@@ -1,17 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ShoppingBag, ChevronRight, Sparkles } from 'lucide-react'
+import { ShoppingBag, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface ProductsBannerCardProps {
   bannerUrl?: string
-  totalItems?: number
   onNavigateToProducts: () => void
 }
 
 export const ProductsBannerCard: React.FC<ProductsBannerCardProps> = ({
   bannerUrl = '/images/order-products-banner.jpg',
-  totalItems = 6,
   onNavigateToProducts,
 }) => {
   const { t } = useLanguage()
@@ -40,22 +38,6 @@ export const ProductsBannerCard: React.FC<ProductsBannerCardProps> = ({
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Subtle Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4 sm:p-5">
-          <div className="flex items-center justify-between w-full">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest px-3 py-1 text-xs font-bold text-white shadow-md backdrop-blur-md">
-              <Sparkles className="h-3 w-3 text-lime-300" />
-              <span>Official Store • {totalItems} Services</span>
-            </span>
-            <span className="text-[11px] font-bold text-emerald-400 bg-black/60 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-              {t.pricelist.badgeOpen}
-            </span>
-          </div>
-
-          <h3 className="mt-2 text-base sm:text-lg font-extrabold text-white tracking-tight drop-shadow-sm flex items-center gap-2">
-            <span>{t.pricelist.title}</span>
-          </h3>
-        </div>
       </div>
 
       {/* Bottom Action Strip */}

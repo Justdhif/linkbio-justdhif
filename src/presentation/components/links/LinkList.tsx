@@ -62,7 +62,6 @@ export const LinkList: React.FC<LinkListProps> = ({
       {/* 3. Products Banner Card (Click to open Dedicated Products Page) */}
       {pricelist.length > 0 && (
         <ProductsBannerCard
-          totalItems={pricelist.length}
           onNavigateToProducts={onNavigateToProducts}
         />
       )}
