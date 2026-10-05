@@ -148,7 +148,8 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
                       </p>
                       <p className="text-[11px] text-neutral-600 pl-5">
                         <span className="font-semibold">Senin:</span> 13:00 – 18:00 WIB<br />
-                        <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB
+                        <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB<br />
+                        <span className="text-[10px] text-neutral-500 italic mt-0.5 block">*Saat waktu sholat (Ashar/Zuhur), status otomatis berubah jadi Break.</span>
                       </p>
                     </div>
 
