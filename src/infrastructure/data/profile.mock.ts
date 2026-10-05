@@ -66,8 +66,8 @@ export const mockProfileData: Profile = {
       id: 'price-5',
       name: 'AM Prem',
       price: '1k',
-      note: 'Alight Motion Premium hemat & resmi',
-      isPopular: true,
+      note: 'Alight Motion Premium',
+      isPopular: false,
     },
   ],
   faqs: [
