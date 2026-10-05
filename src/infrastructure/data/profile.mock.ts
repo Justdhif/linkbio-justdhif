@@ -102,14 +102,6 @@ export const mockProfileData: Profile = {
       thumbnailUrl: 'https://ugc.production.linktr.ee/b771e888-1178-4737-97ef-4aebe9207e5e_WhatsApp-Image-2026-10-04-at-09.00.26.jpeg',
     },
     {
-      id: 'link-2',
-      title: 'order my products',
-      url: 'https://wa.me/447762422507',
-      type: 'classic',
-      layout: 'featured',
-      thumbnailUrl: '/images/order-products-banner.jpg',
-    },
-    {
       id: 'link-3',
       title: 'testi',
       url: 'https://whatsapp.com/channel/0029VbDaoYe0wajpT6EOPx2b',

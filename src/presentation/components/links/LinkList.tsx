@@ -52,13 +52,13 @@ export const LinkList: React.FC<LinkListProps> = ({
       {/* 1. Interactive Music Player Widget */}
       {musicTrack && <MusicPlayerWidget track={musicTrack} />}
 
-      {/* 2. Mini Pricelist Widget */}
-      {pricelist.length > 0 && <PricelistWidget items={pricelist} />}
-
-      {/* 3. Featured Cards (TikTok Portfolio & WhatsApp Order) */}
+      {/* 2. Featured Portfolio Card (TikTok Video Edit) */}
       {featuredLinks.map((link) => (
         <FeaturedCard key={link.id} link={link} onShareClick={onShareLink} />
       ))}
+
+      {/* 3. Merged Order My Products & Pricelist Widget */}
+      {pricelist.length > 0 && <PricelistWidget items={pricelist} />}
 
       {/* 4. Classic Links (Testi & Support) */}
       {classicLinks.map((link) => (
