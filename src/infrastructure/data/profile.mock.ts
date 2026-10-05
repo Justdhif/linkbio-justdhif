@@ -6,6 +6,8 @@ export const mockProfileData: Profile = {
   displayStyledName: '𝗝υѕƚ𝗗𝗵ιƒ store',
   bio: 'thanks for supporting me, enjoyy my products',
   avatarHeroUrl: 'https://ugc.production.linktr.ee/df2d1ff6-2803-443f-901f-2c337105e580_quality-restoration-20261004085901755.png',
+  isOpenOrder: true,
+  statusText: 'Open Order • Menerima Pesanan',
   theme: {
     backgroundColor: '#346C4F',
     buttonBgColor: '#ffffff',
@@ -14,6 +16,82 @@ export const mockProfileData: Profile = {
     buttonShadowColor: '#000000',
     fontFamily: 'Albert Sans',
   },
+  socials: [
+    {
+      platform: 'tiktok',
+      url: 'https://www.tiktok.com/@justdhifbieber',
+      label: 'TikTok @justdhifbieber',
+    },
+    {
+      platform: 'instagram',
+      url: 'https://www.instagram.com/justdhif',
+      label: 'Instagram @justdhif',
+    },
+    {
+      platform: 'discord',
+      url: 'https://discord.gg/justdhif',
+      label: 'Discord Server',
+    },
+  ],
+  pricelist: [
+    {
+      id: 'price-1',
+      name: 'Nomor Kosong WA',
+      price: 'Start from 10k',
+      note: 'Harga bisa berubah sewaktu-waktu',
+      isPopular: false,
+    },
+    {
+      id: 'price-2',
+      name: 'Jasbug',
+      price: '5k',
+      note: 'Layanan jasa bug fast process',
+      isPopular: false,
+    },
+    {
+      id: 'price-3',
+      name: 'Jasban',
+      price: '20k',
+      note: 'Layanan jasa banned terpercaya',
+      isPopular: false,
+    },
+    {
+      id: 'price-4',
+      name: 'Murban',
+      price: '50k',
+      note: 'Paket murid / panduan lengkap',
+      isPopular: false,
+    },
+    {
+      id: 'price-5',
+      name: 'AM Prem',
+      price: '1k',
+      note: 'Alight Motion Premium hemat & resmi',
+      isPopular: true,
+    },
+  ],
+  faqs: [
+    {
+      id: 'faq-1',
+      question: 'Bagaimana cara melakukan pemesanan?',
+      answer: 'Cukup pilih layanan pada daftar Pricelist di atas atau klik tombol "order my products". Anda akan otomatis terhubung ke WhatsApp resmi admin dengan format pesanan yang siap dikirim.',
+    },
+    {
+      id: 'faq-2',
+      question: 'Metode pembayaran apa saja yang diterima?',
+      answer: 'Kami menerima pembayaran melalui QRIS (bisa scan dari DANA, GoPay, OVO, ShopeePay, dan seluruh M-Banking), transfer Bank, serta SociaBuzz Tribe.',
+    },
+    {
+      id: 'faq-3',
+      question: 'Berapa lama estimasi pengerjaan pesanan?',
+      answer: 'Untuk produk instan seperti AM Prem atau Nomor Kosong diproses kilat 5–15 menit setelah pembayaran terverifikasi. Untuk jasa Jasbug/Jasban, waktu pengerjaan akan diinfokan langsung oleh admin saat konsultasi.',
+    },
+    {
+      id: 'faq-4',
+      question: 'Apakah transaksi di Justdhif Store aman & bergaransi?',
+      answer: '100% aman dan bergaransi! Anda bisa melihat rekam jejak dan ratusan bukti transaksi nyata di Saluran Testimoni WhatsApp resmi kami di atas.',
+    },
+  ],
   links: [
     {
       id: 'link-1',

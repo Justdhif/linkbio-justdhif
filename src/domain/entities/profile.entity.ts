@@ -1,6 +1,7 @@
 import { LinkItem } from './link.entity'
 import { GalleryItem } from './gallery.entity'
 import { MusicTrack } from './music.entity'
+import { PricelistItem, SocialLink, FaqItem } from './store-features.entity'
 
 export interface ProfileTheme {
   backgroundColor: string
@@ -18,6 +19,11 @@ export interface Profile {
   bio: string
   avatarHeroUrl: string
   theme: ProfileTheme
+  isOpenOrder?: boolean
+  statusText?: string
+  socials?: SocialLink[]
+  pricelist?: PricelistItem[]
+  faqs?: FaqItem[]
   links: LinkItem[]
   galleries: GalleryItem[]
   musicTrack?: MusicTrack

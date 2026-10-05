@@ -3,15 +3,20 @@ import { motion } from 'framer-motion'
 import { LinkItem } from '../../../domain/entities/link.entity'
 import { GalleryItem } from '../../../domain/entities/gallery.entity'
 import { MusicTrack } from '../../../domain/entities/music.entity'
+import { PricelistItem, FaqItem } from '../../../domain/entities/store-features.entity'
 import { FeaturedCard } from './FeaturedCard'
 import { ClassicButton } from './ClassicButton'
 import { GalleryWidget } from './GalleryWidget'
 import { MusicPlayerWidget } from './MusicPlayerWidget'
+import { PricelistWidget } from './PricelistWidget'
+import { FaqAccordion } from './FaqAccordion'
 
 interface LinkListProps {
   links: LinkItem[]
   galleries: GalleryItem[]
   musicTrack?: MusicTrack
+  pricelist?: PricelistItem[]
+  faqs?: FaqItem[]
   onShareLink: (link: LinkItem) => void
 }
 
@@ -30,6 +35,8 @@ export const LinkList: React.FC<LinkListProps> = ({
   links,
   galleries,
   musicTrack,
+  pricelist = [],
+  faqs = [],
   onShareLink,
 }) => {
   const featuredLinks = links.filter((l) => l.layout === 'featured')
@@ -42,23 +49,29 @@ export const LinkList: React.FC<LinkListProps> = ({
       animate="visible"
       className="flex flex-col gap-3.5 sm:gap-4 px-4 pb-12 w-full max-w-[580px] mx-auto z-10"
     >
-      {/* 1. Interactive Music Player Widget (Di Atas Card Paid Edit) */}
+      {/* 1. Interactive Music Player Widget */}
       {musicTrack && <MusicPlayerWidget track={musicTrack} />}
 
-      {/* 2. Featured Cards (TikTok Portfolio & WhatsApp Order) */}
+      {/* 2. Mini Pricelist Widget */}
+      {pricelist.length > 0 && <PricelistWidget items={pricelist} />}
+
+      {/* 3. Featured Cards (TikTok Portfolio & WhatsApp Order) */}
       {featuredLinks.map((link) => (
         <FeaturedCard key={link.id} link={link} onShareClick={onShareLink} />
       ))}
 
-      {/* 3. Classic Links (Testi & Support) */}
+      {/* 4. Classic Links (Testi & Support) */}
       {classicLinks.map((link) => (
         <ClassicButton key={link.id} link={link} onShareClick={onShareLink} />
       ))}
 
-      {/* 4. Interactive Extension Galleries (wishlist car) */}
+      {/* 5. Interactive Extension Galleries (wishlist car) */}
       {galleries.map((gallery) => (
         <GalleryWidget key={gallery.id} gallery={gallery} />
       ))}
+
+      {/* 6. FAQ Accordion */}
+      {faqs.length > 0 && <FaqAccordion items={faqs} />}
     </motion.div>
   )
 }

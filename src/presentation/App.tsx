@@ -108,19 +108,24 @@ export const App: React.FC = () => {
             alt={profile.displayName}
           />
 
-          {/* Profile Header (Name & Bio) positioned right over the organic fade */}
+          {/* Profile Header (Name, Bio, Live Status, Socials) */}
           <ProfileHeader
             styledName={profile.displayStyledName}
             plainName={profile.displayName}
             bio={profile.bio}
+            isOpenOrder={profile.isOpenOrder}
+            statusText={profile.statusText}
+            socials={profile.socials}
           />
 
-          {/* Links & Gallery Container */}
+          {/* Links, Music, Pricelist, Gallery & FAQ Container */}
           <div className="mt-4 sm:mt-5 relative z-10">
             <LinkList
               links={profile.links}
               galleries={profile.galleries}
               musicTrack={profile.musicTrack}
+              pricelist={profile.pricelist}
+              faqs={profile.faqs}
               onShareLink={handleShareLink}
             />
           </div>

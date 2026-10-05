@@ -1,17 +1,26 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { BadgeCheck } from 'lucide-react'
+import { SocialLink } from '../../../domain/entities/store-features.entity'
+import { LiveStatusBadge } from './LiveStatusBadge'
+import { SocialIconsBar } from './SocialIconsBar'
 
 interface ProfileHeaderProps {
   styledName: string
   plainName: string
   bio: string
+  isOpenOrder?: boolean
+  statusText?: string
+  socials?: SocialLink[]
 }
 
 export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   styledName,
   plainName,
   bio,
+  isOpenOrder = true,
+  statusText,
+  socials = [],
 }) => {
   return (
     <div className="relative z-10 px-6 text-center mt-0 sm:mt-1" id="profile-title">
@@ -43,6 +52,14 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         >
           {bio}
         </motion.p>
+
+        {/* Live Status Badge */}
+        <div className="mt-2.5">
+          <LiveStatusBadge isOpen={isOpenOrder} statusText={statusText} />
+        </div>
+
+        {/* Social Icons Bar (TikTok, Instagram, Discord) */}
+        {socials.length > 0 && <SocialIconsBar socials={socials} />}
       </motion.div>
     </div>
   )

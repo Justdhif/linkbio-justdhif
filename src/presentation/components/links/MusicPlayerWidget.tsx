@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Play, Pause, Volume2, VolumeX, ExternalLink, Repeat, Zap } from 'lucide-react'
+import { Play, Pause, Volume2, VolumeX, Repeat, Zap } from 'lucide-react'
 import { MusicTrack } from '../../../domain/entities/music.entity'
 
 interface MusicPlayerWidgetProps {
@@ -208,20 +208,7 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
           </p>
         </div>
 
-        {/* Spotify External Button */}
-        {track.spotifyUrl && (
-          <motion.a
-            href={track.spotifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            title="Buka di Spotify"
-            className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-black/15 bg-neutral-100 text-neutral-700 transition-colors hover:bg-[#1DB954] hover:text-white hover:border-[#1DB954]"
-          >
-            <ExternalLink className="h-4 w-4" />
-          </motion.a>
-        )}
+
       </div>
 
       {/* Audio Progress Slider with clear played vs unplayed distinction */}
