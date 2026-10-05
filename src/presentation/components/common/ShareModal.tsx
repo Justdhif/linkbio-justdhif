@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Copy, Check, Share2, MessageCircle, Send, Twitter } from 'lucide-react'
+import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface ShareModalProps {
   isOpen: boolean
@@ -20,6 +21,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   onCopy,
   isCopied,
 }) => {
+  const { t } = useLanguage()
+
   useEffect(() => {
     if (isOpen) {
       const originalOverflow = document.body.style.overflow
@@ -89,7 +92,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
             <h3 className="text-lg font-bold text-neutral-900 tracking-tight">
-              Bagikan Tautan
+              {t.shareModal.title}
             </h3>
             <button
               onClick={onClose}
@@ -123,11 +126,11 @@ export const ShareModal: React.FC<ShareModalProps> = ({
               >
                 {isCopied ? (
                   <>
-                    <Check className="h-3.5 w-3.5" /> Tersalin
+                    <Check className="h-3.5 w-3.5" /> {t.shareModal.copySuccess.includes('!') ? 'Tersalin' : 'Copied'}
                   </>
                 ) : (
                   <>
-                    <Copy className="h-3.5 w-3.5" /> Salin
+                    <Copy className="h-3.5 w-3.5" /> {t.shareModal.copyBtn}
                   </>
                 )}
               </motion.button>
@@ -155,7 +158,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
                 onClick={handleNativeShare}
                 className="mt-3 flex w-full items-center justify-center gap-2 py-2.5 rounded-full border border-neutral-300 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors"
               >
-                <Share2 className="h-4 w-4" /> Buka Opsi Berbagi Sistem
+                <Share2 className="h-4 w-4" /> {t.shareModal.nativeShare}
               </button>
             )}
           </div>

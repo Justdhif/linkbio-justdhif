@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, Info, X, Moon, Coffee, Hourglass, Calendar } from 'lucide-react'
 import { getJakartaLiveStatus, StoreLiveSchedule } from '../../../core/utils/store-schedule'
+import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface LiveStatusBadgeProps {
   isOpen?: boolean
@@ -10,16 +11,17 @@ interface LiveStatusBadgeProps {
 }
 
 export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
-  const [schedule, setSchedule] = useState<StoreLiveSchedule>(() => getJakartaLiveStatus())
+  const { language, t } = useLanguage()
+  const [schedule, setSchedule] = useState<StoreLiveSchedule>(() => getJakartaLiveStatus(new Date(), language))
   const [showModal, setShowModal] = useState(false)
   const [currentTimeWIB, setCurrentTimeWIB] = useState('')
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
-      setSchedule(getJakartaLiveStatus(now))
+      setSchedule(getJakartaLiveStatus(now, language))
       setCurrentTimeWIB(
-        now.toLocaleTimeString('id-ID', {
+        now.toLocaleTimeString(language === 'id' ? 'id-ID' : 'en-US', {
           timeZone: 'Asia/Jakarta',
           hour: '2-digit',
           minute: '2-digit',
@@ -31,7 +33,7 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
     // Update every 30 seconds to catch schedule changes promptly
     const interval = setInterval(updateTime, 30000)
     return () => clearInterval(interval)
-  }, [])
+  }, [language])
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -98,9 +100,11 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
                       </span>
                       <div>
                         <h4 className="text-sm font-bold uppercase tracking-wider text-black">
-                          Jadwal Operasional
+                          {t.scheduleModal.title}
                         </h4>
-                        <p className="text-[11px] text-neutral-500 font-medium">Waktu Sekarang: {currentTimeWIB}</p>
+                        <p className="text-[11px] text-neutral-500 font-medium">
+                          {t.scheduleModal.currentTime}: {currentTimeWIB}
+                        </p>
                       </div>
                     </div>
                     <button
@@ -128,45 +132,45 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
                       <p className="font-bold text-neutral-800 flex items-center gap-1.5">
                         <Moon className="h-3.5 w-3.5 text-neutral-700" />
-                        <span>Jam Istirahat Malam (Tutup)</span>
+                        <span>{t.scheduleModal.nightCloseTitle}</span>
                       </p>
-                      <p className="text-[11px] text-neutral-600 pl-5">Setiap Hari: 21:00 – 07:00 WIB</p>
+                      <p className="text-[11px] text-neutral-600 pl-5">{t.scheduleModal.nightCloseDesc}</p>
                     </div>
 
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
                       <p className="font-bold text-neutral-800 flex items-center gap-1.5">
                         <Coffee className="h-3.5 w-3.5 text-amber-600" />
-                        <span>Jam Istirahat & Sholat</span>
+                        <span>{t.scheduleModal.prayerBreakTitle}</span>
                       </p>
-                      <p className="text-[11px] text-neutral-600 pl-5">Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)</p>
+                      <p className="text-[11px] text-neutral-600 pl-5">{t.scheduleModal.prayerBreakDesc}</p>
                     </div>
 
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
                       <p className="font-bold text-neutral-800 flex items-center gap-1.5">
                         <Hourglass className="h-3.5 w-3.5 text-amber-500" />
-                        <span>Jam Sibuk (Slow Response)</span>
+                        <span>{t.scheduleModal.busyTitle}</span>
                       </p>
                       <p className="text-[11px] text-neutral-600 pl-5">
-                        <span className="font-semibold">Senin:</span> 13:00 – 18:00 WIB<br />
-                        <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB<br />
-                        <span className="text-[10px] text-neutral-500 italic mt-0.5 block">*Saat waktu sholat (Ashar/Zuhur), status otomatis berubah jadi Break.</span>
+                        <span className="font-semibold">{t.scheduleModal.busyMonday}</span><br />
+                        <span className="font-semibold">{t.scheduleModal.busyTueFri}</span><br />
+                        <span className="text-[10px] text-neutral-500 italic mt-0.5 block">{t.scheduleModal.busyBreakNote}</span>
                       </p>
                     </div>
 
                     <div className="rounded-lg bg-purple-50 p-2.5 border border-purple-100">
                       <p className="font-bold text-purple-900 flex items-center gap-1.5">
                         <Calendar className="h-3.5 w-3.5 text-purple-700" />
-                        <span>Weekend (Sabtu & Minggu)</span>
+                        <span>{t.scheduleModal.weekendTitle}</span>
                       </p>
                       <p className="text-[11px] text-purple-800 pl-5">
-                        Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.
+                        {t.scheduleModal.weekendDesc}
                       </p>
                     </div>
                   </div>
 
                   <div className="mt-4 flex items-center justify-center gap-1 text-[11px] text-neutral-500">
                     <Info className="h-3.5 w-3.5" />
-                    <span>Format waktu WIB (Waktu Indonesia Barat / Jakarta)</span>
+                    <span>{t.scheduleModal.footerNote}</span>
                   </div>
                 </motion.div>
               </div>

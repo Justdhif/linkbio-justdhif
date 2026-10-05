@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HelpCircle, ChevronDown, Megaphone } from 'lucide-react'
 import { FaqItem } from '../../../domain/entities/store-features.entity'
+import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface FaqAccordionProps {
   items: FaqItem[]
 }
 
 export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
+  const { t } = useLanguage()
   const [openId, setOpenId] = useState<string | null>(items[0]?.id || null)
 
   const toggleItem = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id))
   }
+
+  // Use localized FAQs from translation dictionary if available
+  const localizedFaqs = t.faq.items && t.faq.items.length > 0 ? t.faq.items : items
 
   return (
     <motion.div
@@ -27,14 +32,14 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
             <HelpCircle className="h-4 w-4" />
           </span>
           <h3 className="text-sm sm:text-base font-bold text-black uppercase tracking-wider">
-            Tanya Jawab (FAQ)
+            {t.faq.title}
           </h3>
         </div>
       </div>
 
       {/* Accordion List */}
       <div className="flex flex-col gap-2">
-        {items.map((item) => {
+        {localizedFaqs.map((item) => {
           const isOpen = openId === item.id
           return (
             <div
@@ -75,7 +80,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                             className="inline-flex items-center gap-1.5 rounded-full bg-forest px-3 py-1 text-[11px] font-bold text-white shadow-sm hover:brightness-110 transition-all"
                           >
                             <Megaphone className="h-3 w-3" />
-                            <span>Masuk Saluran Testimoni WA</span>
+                            <span>{t.faq.testiChannelBtn}</span>
                           </a>
                         </div>
                       )}

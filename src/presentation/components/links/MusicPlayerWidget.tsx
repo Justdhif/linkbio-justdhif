@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, Volume2, VolumeX, Repeat, Zap } from 'lucide-react'
 import { MusicTrack } from '../../../domain/entities/music.entity'
+import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface MusicPlayerWidgetProps {
   track: MusicTrack
 }
 
 export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) => {
+  const { t } = useLanguage()
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [currentTime, setCurrentTime] = useState<number>(0)
   const [duration, setDuration] = useState<number>(0)
@@ -260,12 +262,12 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
             {isPlaying ? (
               <>
                 <Pause className="h-3.5 w-3.5 fill-white" />
-                <span>Jeda</span>
+                <span>{t.musicPlayer.pause}</span>
               </>
             ) : (
               <>
                 <Play className="h-3.5 w-3.5 fill-white" />
-                <span>Putar Musik</span>
+                <span>{t.musicPlayer.play}</span>
               </>
             )}
           </motion.button>
@@ -276,7 +278,7 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
           {/* Auto-Play Toggle */}
           <button
             onClick={toggleAutoPlay}
-            title={isAutoPlay ? 'Mode Auto-Play: Aktif (Klik untuk matikan)' : 'Mode Auto-Play: Nonaktif (Klik untuk aktifkan)'}
+            title={isAutoPlay ? t.musicPlayer.autoPlayTitleOn : t.musicPlayer.autoPlayTitleOff}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all border ${
               isAutoPlay
                 ? 'bg-emerald-100 text-emerald-800 border-emerald-300 shadow-xs'
@@ -290,7 +292,7 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
           {/* Auto-Loop Toggle */}
           <button
             onClick={toggleLoop}
-            title={isLooping ? 'Auto-Loop: Aktif (Klik untuk matikan)' : 'Auto-Loop: Nonaktif (Klik untuk aktifkan)'}
+            title={isLooping ? t.musicPlayer.loopTitleOn : t.musicPlayer.loopTitleOff}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all border ${
               isLooping
                 ? 'bg-emerald-100 text-emerald-800 border-emerald-300 shadow-xs'
@@ -304,8 +306,8 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
           {/* Mute Toggle */}
           <button
             onClick={toggleMute}
-            aria-label={isMuted ? 'Unmute' : 'Mute'}
-            title={isMuted ? 'Batal Bisukan' : 'Bisukan Suara'}
+            aria-label={isMuted ? t.musicPlayer.unmute : t.musicPlayer.mute}
+            title={isMuted ? t.musicPlayer.unmute : t.musicPlayer.mute}
             className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-black"
           >
             {isMuted ? (

@@ -1,0 +1,129 @@
+{
+  "profile": {
+    "bio": "thanks for supporting me, enjoyy my products",
+    "status": {
+      "open": "Open Order • Fast Response",
+      "openSubtext": "Admin aktif melayani dan siap memproses pesanan kilat",
+      "busy": "Sibuk • Slow Response",
+      "busySubtextMonday": "Sedang ada aktivitas/antrean, pesan akan dibalas bertahap",
+      "busySubtextTueFri": "Aktivitas pagi/sekolah, pesan akan dibalas secara berkala",
+      "break": "Break • Istirahat",
+      "breakSubtext": "Rehat sejenak. Pesanan akan segera direspon setelah rehat",
+      "closed": "Closed • Istirahat Malam",
+      "closedSubtext": "Buka kembali jam 07:00 WIB pagi. Chat/order tetap diterima!",
+      "weekendClosed": "Weekend Close • Order Diproses Senin",
+      "weekendClosedSubtext": "Bebas order sekarang, pesanan akan diproses mulai Senin pagi"
+    }
+  },
+  "topBar": {
+    "homeAria": "Beranda Justdhif Store",
+    "shareAria": "Bagikan profil"
+  },
+  "scheduleModal": {
+    "title": "JADWAL OPERASIONAL",
+    "currentTime": "Waktu Sekarang",
+    "nightCloseTitle": "Jam Istirahat Malam (Tutup)",
+    "nightCloseDesc": "Setiap Hari: 21:00 – 07:00 WIB",
+    "prayerBreakTitle": "Jam Istirahat & Sholat",
+    "prayerBreakDesc": "Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)",
+    "busyTitle": "Jam Sibuk (Slow Response)",
+    "busyMonday": "Senin: 13:00 – 18:00 WIB",
+    "busyTueFri": "Selasa – Jumat: 07:00 – 12:00 WIB",
+    "busyBreakNote": "*Saat waktu sholat (Ashar/Zuhur), status otomatis berubah jadi Break.",
+    "weekendTitle": "Weekend (Sabtu & Minggu)",
+    "weekendDesc": "Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.",
+    "footerNote": "Format waktu WIB (Waktu Indonesia Barat / Jakarta)"
+  },
+  "musicPlayer": {
+    "play": "Putar Musik",
+    "pause": "Jeda",
+    "autoPlayTitleOn": "Mode Auto-Play: Aktif (Klik untuk matikan)",
+    "autoPlayTitleOff": "Mode Auto-Play: Nonaktif (Klik untuk aktifkan)",
+    "loopTitleOn": "Auto-Loop: Aktif (Klik untuk matikan)",
+    "loopTitleOff": "Auto-Loop: Nonaktif (Klik untuk aktifkan)",
+    "mute": "Bisukan Suara",
+    "unmute": "Batal Bisukan"
+  },
+  "pricelist": {
+    "title": "Order My Products • Pricelist",
+    "badgeOpen": "Open Order",
+    "bannerCta": "Order via WhatsApp",
+    "orderBtn": "Order",
+    "bestSeller": "Best Seller",
+    "items": {
+      "nokos": {
+        "name": "Nomor Kosong WA",
+        "price": "Start from 10k",
+        "note": "Harga bisa berubah sewaktu-waktu"
+      },
+      "jasbug": {
+        "name": "Jasbug",
+        "price": "5k",
+        "note": "Layanan jasa bug fast process",
+        "badge": "Garansi Refund 50%"
+      },
+      "jasban": {
+        "name": "Jasban",
+        "price": "20k",
+        "note": "Layanan jasa banned terpercaya",
+        "badge": "Garansi Refund 50%"
+      },
+      "murban": {
+        "name": "Murban",
+        "price": "50k",
+        "note": "Paket murid / panduan lengkap"
+      },
+      "amprem": {
+        "name": "AM Prem",
+        "price": "1k",
+        "note": "Alight Motion Premium"
+      },
+      "jokitugas": {
+        "name": "Joki Tugas",
+        "price": "Start from 50k",
+        "note": "Joki Makalah • Joki Tugas • Joki Web",
+        "badge": "Full Revisi Sampai Puas"
+      }
+    }
+  },
+  "faq": {
+    "title": "Tanya Jawab (FAQ)",
+    "items": [
+      {
+        "id": "faq-1",
+        "question": "Bagaimana cara melakukan pemesanan?",
+        "answer": "Cukup pilih layanan pada daftar Pricelist di atas atau klik tombol \"order my products\". Anda akan otomatis terhubung ke WhatsApp resmi admin dengan format pesanan yang siap dikirim."
+      },
+      {
+        "id": "faq-2",
+        "question": "Metode pembayaran apa saja yang diterima?",
+        "answer": "Kami menerima pembayaran melalui QRIS (bisa scan dari DANA, GoPay, OVO, ShopeePay, dan seluruh M-Banking), transfer Bank, serta SociaBuzz Tribe."
+      },
+      {
+        "id": "faq-3",
+        "question": "Berapa lama estimasi pengerjaan pesanan?",
+        "answer": "Proses pengerjaan menyesuaikan antrean. Catatan: Jika tidak ada kesibukan, pesanan akan diproses secepat mungkin!"
+      },
+      {
+        "id": "faq-4",
+        "question": "Apakah transaksi di Justdhif Store aman & bergaransi?",
+        "answer": "Iya, transaksi 100% aman dan bergaransi! Karena kami baru memulai store ini, bukti transaksi memang belum terlalu banyak. Namun kamu bisa memantau bukti transaksi dan testimoni langsung di Saluran WhatsApp Testi kami melalui link di atas (atau klik tombol testi)."
+      }
+    ],
+    "testiChannelBtn": "Masuk Saluran Testimoni WA"
+  },
+  "gallery": {
+    "title": "wishlist car",
+    "photoCount": "dari"
+  },
+  "shareModal": {
+    "title": "Bagikan Tautan",
+    "copySuccess": "Tautan berhasil disalin ke clipboard!",
+    "nativeShare": "Buka Opsi Berbagi Sistem",
+    "copyBtn": "Salin"
+  },
+  "footer": {
+    "subtitle": "Justdhif Store • Bio Link",
+    "rights": "All rights reserved."
+  }
+}

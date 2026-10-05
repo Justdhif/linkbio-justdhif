@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { MessageSquare, Flame, ShoppingBag, ExternalLink, ShieldCheck } from 'lucide-react'
 import { PricelistItem } from '../../../domain/entities/store-features.entity'
+import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface PricelistWidgetProps {
   items: PricelistItem[]
@@ -14,12 +15,44 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
   bannerUrl = '/images/order-products-banner.jpg',
   whatsappNumber = '447762422507',
 }) => {
+  const { language, t } = useLanguage()
+
   const getWhatsAppUrl = (itemName?: string, price?: string) => {
-    const text = itemName
-      ? `Halo Justdhif Store, saya mau order: ${itemName} (${price})`
-      : 'Halo Justdhif Store, saya mau order produk'
+    const text = language === 'id'
+      ? (itemName
+          ? `Halo Justdhif Store, saya mau order: ${itemName} (${price})`
+          : 'Halo Justdhif Store, saya mau order produk')
+      : (itemName
+          ? `Hello Justdhif Store, I'd like to order: ${itemName} (${price})`
+          : 'Hello Justdhif Store, I want to order a product')
+
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`
   }
+
+  // Map item details from translation dictionary if available
+  const localizedItems: PricelistItem[] = items.map((item) => {
+    const itemKeyMap: Record<string, keyof typeof t.pricelist.items> = {
+      'price-1': 'nokos',
+      'price-2': 'jasbug',
+      'price-3': 'jasban',
+      'price-4': 'murban',
+      'price-5': 'amprem',
+      'price-6': 'jokitugas',
+    }
+
+    const key = itemKeyMap[item.id]
+    if (key && t.pricelist.items[key]) {
+      const transItem = t.pricelist.items[key]
+      return {
+        ...item,
+        name: transItem.name,
+        price: transItem.price,
+        note: transItem.note,
+        badgeText: 'badge' in transItem ? (transItem as { badge?: string }).badge : item.badgeText,
+      }
+    }
+    return item
+  })
 
   return (
     <motion.div
@@ -45,7 +78,7 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-3">
               <span className="flex items-center gap-1.5 text-xs font-semibold text-white bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm">
-                <ExternalLink className="h-3.5 w-3.5" /> Order via WhatsApp
+                <ExternalLink className="h-3.5 w-3.5" /> {t.pricelist.bannerCta}
               </span>
             </div>
           </div>
@@ -62,18 +95,18 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
             </span>
             <div>
               <h3 className="text-sm sm:text-base font-bold text-black uppercase tracking-wider">
-                Order My Products • Pricelist
+                {t.pricelist.title}
               </h3>
             </div>
           </div>
           <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-            Open Order
+            {t.pricelist.badgeOpen}
           </span>
         </div>
 
         {/* 3. Items List */}
         <div className="flex flex-col gap-2.5">
-          {items.map((item) => (
+          {localizedItems.map((item) => (
             <div
               key={item.id}
               className="flex items-center justify-between p-3 rounded-2xl border border-black/10 bg-neutral-50/80 transition-colors hover:bg-neutral-100/90"
@@ -85,7 +118,7 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
                   </span>
                   {item.isPopular && (
                     <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded-md">
-                      <Flame className="h-2.5 w-2.5 fill-rose-500" /> Best Seller
+                      <Flame className="h-2.5 w-2.5 fill-rose-500" /> {t.pricelist.bestSeller}
                     </span>
                   )}
                   {item.badgeText && (
@@ -116,7 +149,7 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
                   className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-black text-white text-xs font-bold transition-transform hover:bg-neutral-800"
                 >
                   <MessageSquare className="h-3 w-3" />
-                  <span>Order</span>
+                  <span>{t.pricelist.orderBtn}</span>
                 </motion.a>
               </div>
             </div>
