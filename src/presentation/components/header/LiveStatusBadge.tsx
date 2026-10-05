@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, Info, X } from 'lucide-react'
 import { getJakartaLiveStatus, StoreLiveSchedule } from '../../../core/utils/store-schedule'
@@ -59,92 +60,96 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
         <Clock className="h-3 w-3 text-white/60 ml-0.5" />
       </motion.button>
 
-      {/* Detail Schedule Modal */}
-      <AnimatePresence>
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowModal(false)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-sm rounded-[24px] border-2 border-black bg-white p-5 text-black shadow-neo"
-            >
-              <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest text-white">
-                    <Clock className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-black">
-                      Jadwal Operasional
-                    </h4>
-                    <p className="text-[11px] text-neutral-500 font-medium">Waktu Sekarang: {currentTimeWIB}</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
+      {/* Detail Schedule Modal via Portal */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {showModal && (
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   onClick={() => setShowModal(false)}
-                  className="rounded-full p-1 text-neutral-400 hover:bg-neutral-100 hover:text-black transition-colors"
+                  className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+                />
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  className="relative z-10 w-full max-w-sm rounded-[24px] border-2 border-black bg-white p-5 text-black shadow-neo"
                 >
-                  <X className="h-5 w-5" />
-                </button>
+                  <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest text-white">
+                        <Clock className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-wider text-black">
+                          Jadwal Operasional
+                        </h4>
+                        <p className="text-[11px] text-neutral-500 font-medium">Waktu Sekarang: {currentTimeWIB}</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                      className="rounded-full p-1 text-neutral-400 hover:bg-neutral-100 hover:text-black transition-colors"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  {/* Status Now Banner */}
+                  <div className="mt-3.5 rounded-xl border border-neutral-200 bg-neutral-50 p-3">
+                    <div className="flex items-center gap-2">
+                      <span className={`h-2.5 w-2.5 rounded-full ${schedule.dotColorClass}`} />
+                      <span className="text-xs font-bold text-neutral-900">{schedule.label}</span>
+                    </div>
+                    <p className="mt-1 text-[11px] leading-relaxed text-neutral-600">
+                      {schedule.subtext}
+                    </p>
+                  </div>
+
+                  {/* Weekly Rules Overview */}
+                  <div className="mt-3.5 space-y-2 text-xs">
+                    <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
+                      <p className="font-bold text-neutral-800">🌙 Jam Istirahat Malam (Tutup)</p>
+                      <p className="text-[11px] text-neutral-600">Setiap Hari: 21:00 – 07:00 WIB</p>
+                    </div>
+
+                    <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
+                      <p className="font-bold text-neutral-800">🕌 Jam Istirahat & Sholat</p>
+                      <p className="text-[11px] text-neutral-600">Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)</p>
+                    </div>
+
+                    <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
+                      <p className="font-bold text-neutral-800">⏳ Jam Sibuk (Slow Response)</p>
+                      <p className="text-[11px] text-neutral-600">
+                        <span className="font-semibold">Senin:</span> 13:00 – 18:00 WIB<br />
+                        <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg bg-purple-50 p-2.5 border border-purple-100">
+                      <p className="font-bold text-purple-900">🗓️ Weekend (Sabtu & Minggu)</p>
+                      <p className="text-[11px] text-purple-800">
+                        Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-center gap-1 text-[11px] text-neutral-500">
+                    <Info className="h-3.5 w-3.5" />
+                    <span>Format waktu WIB (Waktu Indonesia Barat / Jakarta)</span>
+                  </div>
+                </motion.div>
               </div>
-
-              {/* Status Now Banner */}
-              <div className="mt-3.5 rounded-xl border border-neutral-200 bg-neutral-50 p-3">
-                <div className="flex items-center gap-2">
-                  <span className={`h-2.5 w-2.5 rounded-full ${schedule.dotColorClass}`} />
-                  <span className="text-xs font-bold text-neutral-900">{schedule.label}</span>
-                </div>
-                <p className="mt-1 text-[11px] leading-relaxed text-neutral-600">
-                  {schedule.subtext}
-                </p>
-              </div>
-
-              {/* Weekly Rules Overview */}
-              <div className="mt-3.5 space-y-2 text-xs">
-                <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                  <p className="font-bold text-neutral-800">🌙 Jam Istirahat Malam (Tutup)</p>
-                  <p className="text-[11px] text-neutral-600">Setiap Hari: 21:00 – 07:00 WIB</p>
-                </div>
-
-                <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                  <p className="font-bold text-neutral-800">🕌 Jam Istirahat & Sholat</p>
-                  <p className="text-[11px] text-neutral-600">Zuhur (12:00–13:00) • Ashar (15:15–15:45) • Maghrib (18:00–18:45)</p>
-                </div>
-
-                <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                  <p className="font-bold text-neutral-800">⏳ Jam Sibuk (Slow Response)</p>
-                  <p className="text-[11px] text-neutral-600">
-                    <span className="font-semibold">Senin:</span> 13:00 – 18:00 WIB<br />
-                    <span className="font-semibold">Selasa – Jumat:</span> 07:00 – 12:00 WIB
-                  </p>
-                </div>
-
-                <div className="rounded-lg bg-purple-50 p-2.5 border border-purple-100">
-                  <p className="font-bold text-purple-900">🗓️ Weekend (Sabtu & Minggu)</p>
-                  <p className="text-[11px] text-purple-800">
-                    Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center justify-center gap-1 text-[11px] text-neutral-500">
-                <Info className="h-3.5 w-3.5" />
-                <span>Format waktu WIB (Waktu Indonesia Barat / Jakarta)</span>
-              </div>
-            </motion.div>
-          </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   )
 }
