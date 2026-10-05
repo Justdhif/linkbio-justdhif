@@ -46,6 +46,7 @@ export const mockProfileData: Profile = {
       name: 'Jasbug',
       price: '5k',
       note: 'Layanan jasa bug fast process',
+      badgeText: 'Garansi Refund 50%',
       isPopular: false,
     },
     {
@@ -53,6 +54,7 @@ export const mockProfileData: Profile = {
       name: 'Jasban',
       price: '20k',
       note: 'Layanan jasa banned terpercaya',
+      badgeText: 'Garansi Refund 50%',
       isPopular: false,
     },
     {
