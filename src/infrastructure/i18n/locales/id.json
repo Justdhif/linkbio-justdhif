@@ -22,6 +22,8 @@
   "scheduleModal": {
     "title": "JADWAL OPERASIONAL",
     "currentTime": "Waktu Sekarang",
+    "liveClockTitle": "Jam Real-Time WIB",
+    "liveClockSubtext": "Status operasional toko berganti otomatis mengikuti waktu ini",
     "nightCloseTitle": "Jam Istirahat Malam (Tutup)",
     "nightCloseDesc": "Setiap Hari: 21:00 – 07:00 WIB",
     "prayerBreakTitle": "Jam Istirahat & Sholat",

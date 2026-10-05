@@ -22,6 +22,8 @@
   "scheduleModal": {
     "title": "OPERATIONAL SCHEDULE",
     "currentTime": "Current Time",
+    "liveClockTitle": "Real-Time WIB Clock",
+    "liveClockSubtext": "Store operational status automatically updates based on this clock",
     "nightCloseTitle": "Night Rest Time (Closed)",
     "nightCloseDesc": "Every Day: 21:00 – 07:00 WIB",
     "prayerBreakTitle": "Break & Prayer Time",
