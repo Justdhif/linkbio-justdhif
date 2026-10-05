@@ -8,6 +8,7 @@ import { HeroAvatar } from './components/header/HeroAvatar'
 import { ProfileHeader } from './components/header/ProfileHeader'
 import { LinkList } from './components/links/LinkList'
 import { ProductsPageView } from './components/links/ProductsPageView'
+import { AchimoPageView } from './components/links/AchimoPageView'
 import { ShareModal } from './components/common/ShareModal'
 import { Toast } from './components/common/Toast'
 import { Footer } from './components/footer/Footer'
@@ -18,8 +19,8 @@ export const App: React.FC = () => {
   const { profile, isLoading, error } = useProfile()
   const { copy, isCopied } = useClipboard()
 
-  // Navigation state between home profile and dedicated products page
-  const [currentView, setCurrentView] = useState<'home' | 'products'>('home')
+  // Navigation state between home profile, products page, and Achimo price list
+  const [currentView, setCurrentView] = useState<'home' | 'products' | 'achimo'>('home')
 
   const [shareModalState, setShareModalState] = useState<{
     isOpen: boolean
@@ -69,6 +70,11 @@ export const App: React.FC = () => {
 
   const handleNavigateToProducts = () => {
     setCurrentView('products')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleNavigateToAchimo = () => {
+    setCurrentView('achimo')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -152,10 +158,11 @@ export const App: React.FC = () => {
                   faqs={profile.faqs}
                   onShareLink={handleShareLink}
                   onNavigateToProducts={handleNavigateToProducts}
+                  onNavigateToAchimo={handleNavigateToAchimo}
                 />
               </div>
             </motion.div>
-          ) : (
+          ) : currentView === 'products' ? (
             <motion.div
               key="view-products"
               initial={{ opacity: 0, y: 15 }}
@@ -168,6 +175,17 @@ export const App: React.FC = () => {
                 items={profile.pricelist || []}
                 onBack={handleBackToHome}
               />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="view-achimo"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col relative z-10 pt-16 sm:pt-20 min-h-[600px]"
+            >
+              <AchimoPageView onBack={handleBackToHome} />
             </motion.div>
           )}
         </AnimatePresence>

@@ -88,6 +88,22 @@
       }
     }
   },
+  "achimoPricelist": {
+    "title": "Paid Edit by Achimoo • Price List",
+    "viewProductsCta": "Lihat Price List Paid Edit",
+    "backToHome": "Kembali ke Beranda",
+    "subtitle": "Katalog Jasa Edit Video & Foto by Achimoo",
+    "presetSection": "Preset",
+    "bannerSection": "Edit Banner",
+    "mediaSection": "Edit Foto / Video",
+    "orderDmBtn": "DM for Order via TikTok",
+    "categories": {
+      "preset": "Preset",
+      "editBanner": "Edit Banner",
+      "editMedia": "Edit Foto / Video"
+    },
+    "note": "Note: Bawa preset sendiri • Free HD • Req CC +500p • No watermark"
+  },
   "faq": {
     "title": "Tanya Jawab (FAQ)",
     "items": [

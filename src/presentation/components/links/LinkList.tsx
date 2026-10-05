@@ -4,11 +4,11 @@ import { LinkItem } from '../../../domain/entities/link.entity'
 import { GalleryItem } from '../../../domain/entities/gallery.entity'
 import { MusicTrack } from '../../../domain/entities/music.entity'
 import { PricelistItem, FaqItem } from '../../../domain/entities/store-features.entity'
-import { FeaturedCard } from './FeaturedCard'
 import { ClassicButton } from './ClassicButton'
 import { GalleryWidget } from './GalleryWidget'
 import { MusicPlayerWidget } from './MusicPlayerWidget'
 import { ProductsBannerCard } from './ProductsBannerCard'
+import { AchimoBannerCard } from './AchimoBannerCard'
 import { FaqAccordion } from './FaqAccordion'
 
 interface LinkListProps {
@@ -19,6 +19,7 @@ interface LinkListProps {
   faqs?: FaqItem[]
   onShareLink: (link: LinkItem) => void
   onNavigateToProducts: () => void
+  onNavigateToAchimo: () => void
 }
 
 const containerVariants = {
@@ -40,8 +41,8 @@ export const LinkList: React.FC<LinkListProps> = ({
   faqs = [],
   onShareLink,
   onNavigateToProducts,
+  onNavigateToAchimo,
 }) => {
-  const featuredLinks = links.filter((l) => l.layout === 'featured')
   const classicLinks = links.filter((l) => l.layout === 'stack')
 
   return (
@@ -54,10 +55,8 @@ export const LinkList: React.FC<LinkListProps> = ({
       {/* 1. Interactive Music Player Widget */}
       {musicTrack && <MusicPlayerWidget track={musicTrack} />}
 
-      {/* 2. Featured Portfolio Card (TikTok Video Edit) */}
-      {featuredLinks.map((link) => (
-        <FeaturedCard key={link.id} link={link} onShareClick={onShareLink} />
-      ))}
+      {/* 2. Paid Edit by Achimoo Banner Card (Click to open Dedicated Price List) */}
+      <AchimoBannerCard onNavigate={onNavigateToAchimo} />
 
       {/* 3. Products Banner Card (Click to open Dedicated Products Page) */}
       {pricelist.length > 0 && (

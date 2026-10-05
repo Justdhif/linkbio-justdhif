@@ -88,6 +88,22 @@
       }
     }
   },
+  "achimoPricelist": {
+    "title": "Paid Edit by Achimoo • Price List",
+    "viewProductsCta": "View Paid Edit Price List",
+    "backToHome": "Back to Home",
+    "subtitle": "Video & Photo Editing Services Catalog by Achimoo",
+    "presetSection": "Preset",
+    "bannerSection": "Edit Banner",
+    "mediaSection": "Edit Photo / Video",
+    "orderDmBtn": "DM for Order via TikTok",
+    "categories": {
+      "preset": "Preset",
+      "editBanner": "Edit Banner",
+      "editMedia": "Edit Photo / Video"
+    },
+    "note": "Note: Bring your own preset • Free HD • Req CC +500p • No watermark"
+  },
   "faq": {
     "title": "Frequently Asked Questions (FAQ)",
     "items": [
