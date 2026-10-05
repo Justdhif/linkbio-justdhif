@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MessageSquare, Flame, ShoppingBag, ExternalLink } from 'lucide-react'
+import { MessageSquare, Flame, ShoppingBag, ExternalLink, ShieldCheck } from 'lucide-react'
 import { PricelistItem } from '../../../domain/entities/store-features.entity'
 
 interface PricelistWidgetProps {
@@ -86,6 +86,12 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
                   {item.isPopular && (
                     <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded-md">
                       <Flame className="h-2.5 w-2.5 fill-rose-500" /> Best Seller
+                    </span>
+                  )}
+                  {item.badgeText && (
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-md shadow-2xs">
+                      <ShieldCheck className="h-3 w-3 text-emerald-600" />
+                      <span>{item.badgeText}</span>
                     </span>
                   )}
                 </div>

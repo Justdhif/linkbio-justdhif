@@ -4,6 +4,7 @@ export interface PricelistItem {
   price: string
   note?: string
   isPopular?: boolean
+  badgeText?: string
 }
 
 export interface SocialLink {
