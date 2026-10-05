@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, MessageSquare, Flame, ShoppingBag, ShieldCheck, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, MessageSquare, Flame, ShoppingBag, ShieldCheck } from 'lucide-react'
 import { PricelistItem } from '../../../domain/entities/store-features.entity'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
@@ -161,12 +161,6 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
                   </span>
                 </div>
               ))}
-            </div>
-
-            {/* Note Box */}
-            <div className="mt-3 rounded-xl bg-emerald-50/70 p-2.5 border border-emerald-200/60 text-[11px] text-emerald-950 leading-relaxed font-medium">
-              <CheckCircle2 className="h-3.5 w-3.5 inline mr-1 text-emerald-600" />
-              {t.pricelist.note}
             </div>
           </div>
 
