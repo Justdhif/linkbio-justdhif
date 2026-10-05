@@ -69,6 +69,13 @@ export const mockProfileData: Profile = {
       note: 'Alight Motion Premium',
       isPopular: false,
     },
+    {
+      id: 'price-6',
+      name: 'Joki Tugas',
+      price: 'Start from 50k',
+      note: 'Joki Makalah • Joki Tugas • Bikin Web (Full revisi sampai puas)',
+      isPopular: false,
+    },
   ],
   faqs: [
     {
