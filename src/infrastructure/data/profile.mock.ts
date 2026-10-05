@@ -24,13 +24,13 @@ export const mockProfileData: Profile = {
     },
     {
       platform: 'instagram',
-      url: 'https://www.instagram.com/justdhif',
-      label: 'Instagram @justdhif',
+      url: 'https://www.instagram.com/justdhif_',
+      label: 'Instagram @justdhif_',
     },
     {
       platform: 'discord',
-      url: 'https://discord.gg/justdhif',
-      label: 'Discord Server',
+      url: 'https://discord.com/users/1223503242483466340',
+      label: 'Discord Profile',
     },
   ],
   pricelist: [
