@@ -156,23 +156,9 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-xs sm:text-sm font-mono font-extrabold text-emerald-600">
-                      {item.price}
-                    </span>
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={getWhatsAppUrl(item.name, item.price)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={`Order ${item.name}`}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black text-white text-[11px] font-bold transition-transform hover:bg-neutral-800 shadow-2xs"
-                    >
-                      <MessageSquare className="h-3 w-3" />
-                      <span>{t.pricelist.orderBtn}</span>
-                    </motion.a>
-                  </div>
+                  <span className="text-xs sm:text-sm font-mono font-extrabold text-emerald-600 shrink-0">
+                    {item.price}
+                  </span>
                 </div>
               ))}
             </div>
