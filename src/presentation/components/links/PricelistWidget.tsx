@@ -116,19 +116,6 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
             </div>
           ))}
         </div>
-
-        {/* 4. Bottom WhatsApp Direct CTA Button */}
-        <motion.a
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          href={getWhatsAppUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border-2 border-black bg-black py-2.5 text-xs sm:text-sm font-bold text-white shadow-neo-sm transition-transform hover:bg-neutral-800"
-        >
-          <MessageSquare className="h-4 w-4" />
-          <span>Chat WhatsApp Admin (+447762422507)</span>
-        </motion.a>
       </div>
     </motion.div>
   )
