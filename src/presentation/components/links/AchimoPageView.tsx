@@ -18,7 +18,7 @@ interface AchimoServiceItem {
 }
 
 export const AchimoPageView: React.FC<AchimoPageViewProps> = ({
-  bannerUrl = '/images/achimo-pricelist-banner.jpg',
+  bannerUrl = 'https://ugc.production.linktr.ee/b771e888-1178-4737-97ef-4aebe9207e5e_WhatsApp-Image-2026-10-04-at-09.00.26.jpeg',
   tiktokUrl = 'https://www.tiktok.com/@acyash_?_r=1&_t=ZS-9AGJIkH4ic0',
   onBack,
 }) => {

@@ -9,7 +9,7 @@ interface AchimoBannerCardProps {
 }
 
 export const AchimoBannerCard: React.FC<AchimoBannerCardProps> = ({
-  bannerUrl = '/images/achimo-pricelist-banner.jpg',
+  bannerUrl = 'https://ugc.production.linktr.ee/b771e888-1178-4737-97ef-4aebe9207e5e_WhatsApp-Image-2026-10-04-at-09.00.26.jpeg',
   onNavigate,
 }) => {
   const { t } = useLanguage()
