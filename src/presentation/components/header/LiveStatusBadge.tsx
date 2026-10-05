@@ -3,6 +3,11 @@ import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, Info, X, Moon, Coffee, Hourglass, Calendar } from 'lucide-react'
 import { getJakartaLiveStatus, StoreLiveSchedule } from '../../../core/utils/store-schedule'
+import {
+  PrayerTimes,
+  fetchJakartaPrayerTimes,
+  DEFAULT_JAKARTA_PRAYER_TIMES,
+} from '../../../core/services/prayer-times.service'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
 
 interface LiveStatusBadgeProps {
@@ -12,15 +17,33 @@ interface LiveStatusBadgeProps {
 
 export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
   const { language, t } = useLanguage()
-  const [schedule, setSchedule] = useState<StoreLiveSchedule>(() => getJakartaLiveStatus(new Date(), language))
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes>(DEFAULT_JAKARTA_PRAYER_TIMES)
+  const [schedule, setSchedule] = useState<StoreLiveSchedule>(() =>
+    getJakartaLiveStatus(new Date(), language, DEFAULT_JAKARTA_PRAYER_TIMES)
+  )
   const [showModal, setShowModal] = useState(false)
   const [timeFormatted, setTimeFormatted] = useState('')
   const [dateFormatted, setDateFormatted] = useState('')
 
+  // 1. Fetch dynamic prayer times for Jakarta on mount
+  useEffect(() => {
+    let isMounted = true
+    fetchJakartaPrayerTimes().then((data) => {
+      if (isMounted) {
+        setPrayerTimes(data)
+        setSchedule(getJakartaLiveStatus(new Date(), language, data))
+      }
+    })
+    return () => {
+      isMounted = false
+    }
+  }, [language])
+
+  // 2. Real-time 1s ticking clock & schedule evaluation
   useEffect(() => {
     const updateRealtimeClock = () => {
       const now = new Date()
-      setSchedule(getJakartaLiveStatus(now, language))
+      setSchedule(getJakartaLiveStatus(now, language, prayerTimes))
 
       // 24-hour Jakarta time with seconds (e.g. 15:24:08)
       const timeStr = now.toLocaleTimeString('en-GB', {
@@ -43,10 +66,9 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
     }
 
     updateRealtimeClock()
-    // Live ticking every second
     const interval = setInterval(updateRealtimeClock, 1000)
     return () => clearInterval(interval)
-  }, [language])
+  }, [language, prayerTimes])
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -193,8 +215,48 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
                     </p>
                   </div>
 
+                  {/* Dynamic Prayer Times Schedule Card (Live Kemenag API) */}
+                  <div className="mt-3 rounded-xl border border-amber-500/30 bg-amber-50/70 p-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-950">
+                        <Coffee className="h-3.5 w-3.5 text-amber-600" />
+                        <span>{t.scheduleModal.prayerScheduleTitle}</span>
+                      </div>
+                      <span className="text-[10px] font-bold text-amber-800 bg-amber-100/90 border border-amber-300/60 px-2 py-0.5 rounded-full">
+                        {t.scheduleModal.prayerApiSource}
+                      </span>
+                    </div>
+
+                    {/* Prayer Times 5-Col Grid */}
+                    <div className="grid grid-cols-5 gap-1 text-center">
+                      {[
+                        { label: 'Subuh', time: prayerTimes.subuh },
+                        { label: 'Dzuhur', time: prayerTimes.dzuhur },
+                        { label: 'Ashar', time: prayerTimes.ashar },
+                        { label: 'Maghrib', time: prayerTimes.maghrib },
+                        { label: 'Isya', time: prayerTimes.isya },
+                      ].map((p) => (
+                        <div
+                          key={p.label}
+                          className="p-1.5 rounded-lg border border-amber-200/80 bg-white/90 shadow-2xs"
+                        >
+                          <span className="block text-[10px] font-bold text-neutral-500">
+                            {p.label}
+                          </span>
+                          <span className="block text-[11px] sm:text-xs font-mono font-extrabold text-neutral-900 mt-0.5">
+                            {p.time}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="mt-2 text-[10.5px] text-amber-900 leading-relaxed font-medium">
+                      * {t.scheduleModal.prayerBreakDesc}
+                    </p>
+                  </div>
+
                   {/* Weekly Rules Overview */}
-                  <div className="mt-3.5 space-y-2 text-xs">
+                  <div className="mt-3 space-y-2 text-xs">
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
                       <p className="font-bold text-neutral-800 flex items-center gap-1.5">
                         <Moon className="h-3.5 w-3.5 text-neutral-700" />
@@ -205,22 +267,23 @@ export const LiveStatusBadge: React.FC<LiveStatusBadgeProps> = () => {
 
                     <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
                       <p className="font-bold text-neutral-800 flex items-center gap-1.5">
-                        <Coffee className="h-3.5 w-3.5 text-amber-600" />
-                        <span>{t.scheduleModal.prayerBreakTitle}</span>
-                      </p>
-                      <p className="text-[11px] text-neutral-600 pl-5">{t.scheduleModal.prayerBreakDesc}</p>
-                    </div>
-
-                    <div className="rounded-lg bg-neutral-50 p-2.5 border border-neutral-100">
-                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
                         <Hourglass className="h-3.5 w-3.5 text-amber-500" />
                         <span>{t.scheduleModal.busyTitle}</span>
                       </p>
-                      <p className="text-[11px] text-neutral-600 pl-5">
-                        <span className="font-semibold">{t.scheduleModal.busyMonday}</span><br />
-                        <span className="font-semibold">{t.scheduleModal.busyTueFri}</span><br />
-                        <span className="text-[10px] text-neutral-500 italic mt-0.5 block">{t.scheduleModal.busyBreakNote}</span>
-                      </p>
+                      <div className="text-[11px] text-neutral-600 pl-5 space-y-1">
+                        <div>
+                          <span className="font-semibold text-neutral-800">{t.scheduleModal.busyMonday}</span>
+                          <span className="text-[10px] text-neutral-500 block">
+                            (Break otomatis saat Ashar ~{prayerTimes.ashar} WIB)
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-semibold text-neutral-800">{t.scheduleModal.busyTueFri}</span>
+                          <span className="text-[10px] text-neutral-500 block">
+                            (Break otomatis saat Dzuhur ~{prayerTimes.dzuhur} WIB)
+                          </span>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="rounded-lg bg-purple-50 p-2.5 border border-purple-100">

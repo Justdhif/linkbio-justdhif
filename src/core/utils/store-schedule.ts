@@ -1,3 +1,9 @@
+import {
+  PrayerTimes,
+  timeToMinutes,
+  DEFAULT_JAKARTA_PRAYER_TIMES,
+} from '../services/prayer-times.service'
+
 export type StoreStatusType = 'open' | 'busy' | 'break' | 'closed' | 'weekend_closed'
 
 export interface StoreLiveSchedule {
@@ -10,14 +16,16 @@ export interface StoreLiveSchedule {
   borderClass: string
   canOrder: boolean
   nextScheduleText?: string
+  activePrayerName?: string
 }
 
 /**
- * Helper to compute live store status based on Jakarta time (WIB / UTC+7)
+ * Helper to compute live store status based on Jakarta time (WIB / UTC+7) and dynamic prayer times
  */
 export function getJakartaLiveStatus(
   customDate?: Date,
-  lang: 'id' | 'en' = 'id'
+  lang: 'id' | 'en' = 'id',
+  prayerTimes: PrayerTimes = DEFAULT_JAKARTA_PRAYER_TIMES
 ): StoreLiveSchedule {
   const now = customDate || new Date()
 
@@ -52,7 +60,7 @@ export function getJakartaLiveStatus(
     }
   }
 
-  // 2. Night Close Logic (All Weekdays: Monday - Friday)
+  // 2. Night Close Logic (All Weekdays: Monday - Friday, 21:00 - 07:00 WIB)
   if (currentTotalMinutes >= 21 * 60 || currentTotalMinutes < 7 * 60) {
     return {
       status: 'closed',
@@ -68,29 +76,38 @@ export function getJakartaLiveStatus(
     }
   }
 
-  // 3. Prayer Breaks (Break Time: Zuhur, Ashar, Maghrib)
-  const isZuhurBreak = currentTotalMinutes >= 12 * 60 && currentTotalMinutes < 13 * 60
-  const isAsharBreak = currentTotalMinutes >= 15 * 60 + 15 && currentTotalMinutes < 15 * 60 + 45
-  const isMaghribBreak = currentTotalMinutes >= 18 * 60 && currentTotalMinutes < 18 * 60 + 45
+  // 3. Dynamic Prayer Breaks (Based on real Kemenag Jakarta API timings)
+  // Break window: from azan time until ~35-45 minutes after azan
+  const dzuhurMinutes = timeToMinutes(prayerTimes.dzuhur)
+  const asharMinutes = timeToMinutes(prayerTimes.ashar)
+  const maghribMinutes = timeToMinutes(prayerTimes.maghrib)
+  const isyaMinutes = timeToMinutes(prayerTimes.isya)
 
-  if (isZuhurBreak || isAsharBreak || isMaghribBreak) {
-    let prayerName = isEn ? 'Rest & Prayer' : 'Istirahat & Sholat'
-    if (isZuhurBreak) prayerName = isEn ? 'Zuhur Prayer Break' : 'Istirahat & Sholat Zuhur'
-    else if (isAsharBreak) prayerName = isEn ? 'Ashar Prayer Break' : 'Istirahat & Sholat Ashar'
-    else if (isMaghribBreak) prayerName = isEn ? 'Maghrib Prayer Break' : 'Istirahat & Sholat Maghrib'
+  const isZuhurBreak = currentTotalMinutes >= dzuhurMinutes && currentTotalMinutes < dzuhurMinutes + 45
+  const isAsharBreak = currentTotalMinutes >= asharMinutes && currentTotalMinutes < asharMinutes + 40
+  const isMaghribBreak = currentTotalMinutes >= maghribMinutes && currentTotalMinutes < maghribMinutes + 40
+  const isIsyaBreak = currentTotalMinutes >= isyaMinutes && currentTotalMinutes < isyaMinutes + 35
+
+  if (isZuhurBreak || isAsharBreak || isMaghribBreak || isIsyaBreak) {
+    let prayerName = ''
+    if (isZuhurBreak) prayerName = isEn ? `Dhuhr (${prayerTimes.dzuhur})` : `Dzuhur (${prayerTimes.dzuhur})`
+    else if (isAsharBreak) prayerName = isEn ? `Asr (${prayerTimes.ashar})` : `Ashar (${prayerTimes.ashar})`
+    else if (isMaghribBreak) prayerName = isEn ? `Maghrib (${prayerTimes.maghrib})` : `Maghrib (${prayerTimes.maghrib})`
+    else if (isIsyaBreak) prayerName = isEn ? `Isha (${prayerTimes.isya})` : `Isya (${prayerTimes.isya})`
 
     return {
       status: 'break',
-      label: `Break • ${prayerName}`,
+      label: isEn ? `Break • ${prayerName} Prayer` : `Break • Sholat ${prayerName}`,
       subtext: isEn
-        ? 'Taking a short break. Orders will be responded to shortly'
-        : 'Rehat sejenak. Pesanan akan segera direspon setelah rehat',
+        ? 'Taking a short rest & prayer break. Orders will be responded to shortly.'
+        : 'Rehat sejenak & ibadah sholat. Pesanan akan segera direspon setelah rehat.',
       dotColorClass: 'bg-amber-400',
       pingColorClass: 'bg-amber-300',
       badgeBgClass: 'bg-amber-950/40',
       borderClass: 'border-amber-300/30',
       canOrder: true,
       nextScheduleText: isEn ? 'Back shortly' : 'Segera kembali aktif',
+      activePrayerName: prayerName,
     }
   }
 
