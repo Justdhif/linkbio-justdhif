@@ -74,7 +74,7 @@ export const AchimoPageView: React.FC<AchimoPageViewProps> = ({
           className="flex items-center gap-1.5 rounded-full bg-pink-500 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition-transform hover:scale-105"
         >
           <MessageCircle className="h-3.5 w-3.5" />
-          <span>DM for Order</span>
+          <span>{t.achimoPricelist.orderDmBtn}</span>
         </a>
       </div>
 

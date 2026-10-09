@@ -14,8 +14,10 @@ import { Toast } from './components/common/Toast'
 import { Footer } from './components/footer/Footer'
 import { LinkItem } from '../domain/entities/link.entity'
 import { Loader2 } from 'lucide-react'
+import { useLanguage } from '../infrastructure/i18n/language-context'
 
 export const App: React.FC = () => {
+  const { t } = useLanguage()
   const { profile, isLoading, error } = useProfile()
   const { copy, isCopied } = useClipboard()
 
@@ -142,7 +144,7 @@ export const App: React.FC = () => {
               <ProfileHeader
                 styledName={profile.displayStyledName}
                 plainName={profile.displayName}
-                bio={profile.bio}
+                bio={t.profile.bio || profile.bio}
                 isOpenOrder={profile.isOpenOrder}
                 statusText={profile.statusText}
                 socials={profile.socials}

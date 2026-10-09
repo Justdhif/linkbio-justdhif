@@ -1,18 +1,18 @@
 {
   "profile": {
-    "bio": "thanks for supporting me, enjoyy my products",
+    "bio": "Thanks for supporting me, enjoy my products",
     "status": {
-      "open": "Open Order • Fast Response",
+      "open": "Open • Fast Response",
       "openSubtext": "Admin is active and ready for fast processing",
-      "busy": "Busy • Slow Response",
-      "busySubtextMonday": "Currently active / in queue, messages will be answered gradually",
-      "busySubtextTueFri": "Morning activities / school, replies will be sent periodically",
-      "break": "Break • Resting",
+      "busy": "Busy • Gradual Response",
+      "busySubtextMonday": "Currently active or in queue, messages will be answered gradually",
+      "busySubtextTueFri": "Morning school or activities, replies will be sent periodically",
+      "break": "Break • Short Rest",
       "breakSubtext": "Taking a short break. Orders will be responded to shortly",
       "closed": "Closed • Night Rest",
-      "closedSubtext": "Reopening at 07:00 AM WIB. Orders/chats are still accepted!",
-      "weekendClosed": "Weekend Close • Processed on Monday",
-      "weekendClosedSubtext": "Feel free to order now, processing starts Monday morning"
+      "closedSubtext": "Reopening at 07:00 AM WIB. Orders and messages are still accepted!",
+      "weekendClosed": "Weekend Closed • Processed on Monday",
+      "weekendClosedSubtext": "Feel free to order anytime, processing starts Monday morning"
     }
   },
   "topBar": {
@@ -26,15 +26,15 @@
     "liveClockSubtext": "Store operational status automatically updates based on this clock",
     "nightCloseTitle": "Night Rest Time (Closed)",
     "nightCloseDesc": "Every Day: 21:00 – 07:00 WIB",
-    "prayerBreakTitle": "Prayer & Rest Breaks (Dynamic API)",
-    "prayerBreakDesc": "Break automatically triggers during prayer call (~35–45 mins)",
+    "prayerBreakTitle": "Prayer & Rest Breaks (Dynamic Schedule)",
+    "prayerBreakDesc": "Automatic break triggers during prayer call (~35–45 mins)",
     "prayerScheduleTitle": "Today's Prayer Times (WIB)",
-    "prayerApiSource": "Kemenag RI • Jakarta",
+    "prayerApiSource": "Ministry of Religious Affairs RI • Jakarta",
     "prayerActiveBadge": "Prayer Time",
-    "busyTitle": "Busy Hours (Slow Response)",
+    "busyTitle": "Busy Hours (Gradual Response)",
     "busyMonday": "Monday: 13:00 – 18:00 WIB",
     "busyTueFri": "Tuesday – Friday: 07:00 – 12:00 WIB",
-    "busyBreakNote": "*During prayer times (Ashar/Zuhur), status automatically changes to Break.",
+    "busyBreakNote": "*During prayer times (Asr/Dhuhr), status automatically changes to Break.",
     "weekendTitle": "Weekend (Saturday & Sunday)",
     "weekendDesc": "Feel free to order anytime! All weekend orders will be processed starting Monday.",
     "footerNote": "Time format: WIB (Western Indonesia Time / Jakarta)"
@@ -50,7 +50,7 @@
     "unmute": "Unmute Audio"
   },
   "pricelist": {
-    "title": "Order My Products • Pricelist",
+    "title": "Products & Services • Pricelist",
     "subtitle": "Official Products & Services Catalog by Justdhif Store",
     "sectionTitle": "Products & Services List",
     "badgeOpen": "Open Order",
@@ -60,39 +60,125 @@
     "orderBtn": "Order",
     "bestSeller": "Best Seller",
     "note": "Note: 100% safe transaction & guaranteed • Direct order via official WhatsApp • Fast response",
+    "confirmationNotice": "Please confirm stock or slot availability with the admin before making a purchase!",
+    "packagesLabel": "package options",
+    "categories": {
+      "all": "All",
+      "aplikasi": "Applications",
+      "sewaBot": "Bot Rental",
+      "lainLain": "Others"
+    },
+    "promo": {
+      "fridayTitle": "Friday Promo: 20% OFF",
+      "fridayActive": "Friday Blessing Promo: 20% OFF active today for all categories!",
+      "fridayNotice": "All categories automatically get 20% off for purchases every Friday",
+      "appGuarantee": "50% Guarantee for Application category",
+      "fridayBadge": "-20% Friday"
+    },
     "items": {
-      "nokos": {
-        "name": "Virtual Number WA",
-        "price": "Start from 10k",
-        "note": "Price may change at any time"
-      },
-      "jasbug": {
-        "name": "Jasbug (Bug Service)",
-        "price": "5k",
-        "note": "Fast process bug service",
-        "badge": "50% Refund Guarantee"
-      },
-      "jasban": {
-        "name": "Jasban (Ban Service)",
-        "price": "20k",
-        "note": "Trusted ban assistance service",
-        "badge": "50% Refund Guarantee"
-      },
-      "murban": {
-        "name": "Murban (Course)",
-        "price": "50k",
-        "note": "Full mentorship & comprehensive guide"
-      },
-      "amprem": {
-        "name": "AM Prem",
+      "am-buyer": {
+        "name": "AM Prem (Buyer Account)",
         "price": "1k",
-        "note": "Alight Motion Premium"
+        "note": "Alight Motion Premium Buyer Account",
+        "badge": "50% Guarantee"
       },
-      "jokitugas": {
-        "name": "Assignment Service",
-        "price": "Start from 50k",
-        "note": "Papers • Homework • Web Development",
-        "badge": "Full Revision Guarantee"
+      "am-seller": {
+        "name": "AM Prem (Seller Account)",
+        "price": "2k",
+        "note": "Alight Motion Premium Seller Account",
+        "badge": "50% Guarantee"
+      },
+      "spotify": {
+        "name": "Spotify Premium",
+        "price": "11k / month",
+        "note": "Account / Plan Spotify Premium (1 Month)",
+        "badge": "50% Guarantee"
+      },
+      "capcut-rand": {
+        "name": "CapCut Random (3 - 6 Days)",
+        "price": "5k",
+        "note": "Duration 3 - 6 days random",
+        "badge": "50% Guarantee"
+      },
+      "capcut-invite-1w": {
+        "name": "CapCut Private Invite (1 Week)",
+        "price": "15k",
+        "note": "Duration 1 week • Private invite",
+        "badge": "50% Guarantee"
+      },
+      "capcut-invite-1m": {
+        "name": "CapCut Private Invite (1 Month)",
+        "price": "35k",
+        "note": "Duration 1 month • Private invite",
+        "badge": "50% Guarantee"
+      },
+      "canva-head-1m": {
+        "name": "Canva Pro Head (1 Month)",
+        "price": "10k",
+        "note": "Canva Pro Head • Duration 1 month",
+        "badge": "50% Guarantee"
+      },
+      "canva-head-3m": {
+        "name": "Canva Pro Head (3 Months)",
+        "price": "20k",
+        "note": "Canva Pro Head • Duration 3 months",
+        "badge": "50% Guarantee"
+      },
+      "canva-private-3m": {
+        "name": "Canva Pro Private (3 Months)",
+        "price": "5k",
+        "note": "Canva Pro Private • Duration 3 months",
+        "badge": "50% Guarantee"
+      },
+      "canva-edu": {
+        "name": "Canva Pro Edu Invite",
+        "price": "2k",
+        "note": "Canva Pro Edu Invite link",
+        "badge": "50% Guarantee"
+      },
+      "netflix-shr": {
+        "name": "Netflix Sharing 20 Days + 1P2U",
+        "price": "26k",
+        "note": "Sharing 20 days • 1 Profile 2 Users",
+        "badge": "50% Guarantee"
+      },
+      "wink-14d": {
+        "name": "Wink (10 - 14 Days) All Device",
+        "price": "11k",
+        "note": "All devices supported • Duration 10 - 14 days",
+        "badge": "50% Guarantee"
+      },
+      "wink-7d": {
+        "name": "Wink (3 - 7 Days) All Device",
+        "price": "6k",
+        "note": "All devices supported • Duration 3 - 7 days",
+        "badge": "50% Guarantee"
+      },
+      "gemini-pro": {
+        "name": "Gemini Pro Invite 1 Year+ (18 Months)",
+        "price": "50k",
+        "note": "Google Gemini Pro Invite • Active 18 months",
+        "badge": "50% Guarantee"
+      },
+      "bot-1w": {
+        "name": "Bot Rental (1 Week)",
+        "price": "5k / week",
+        "note": "WhatsApp Bot rental service • 1 week"
+      },
+      "bot-1m": {
+        "name": "Bot Rental (1 Month)",
+        "price": "15k / month",
+        "note": "WhatsApp Bot rental service • 1 month"
+      },
+      "bot-3m": {
+        "name": "Bot Rental (3 Months)",
+        "price": "35k / 3 months",
+        "note": "WhatsApp Bot rental service • 3 months"
+      },
+      "bot-1y": {
+        "name": "Bot Rental (1 Year)",
+        "price": "50k / year",
+        "note": "WhatsApp Bot rental service • 1 year"
       }
     }
   },
@@ -101,16 +187,16 @@
     "viewProductsCta": "View Paid Edit Price List",
     "backToHome": "Back to Home",
     "subtitle": "Video & Photo Editing Services Catalog by Achimoo",
-    "presetSection": "Preset",
-    "bannerSection": "Edit Banner",
-    "mediaSection": "Edit Photo / Video",
+    "presetSection": "Presets",
+    "bannerSection": "Banner Editing",
+    "mediaSection": "Photo / Video Editing",
     "orderDmBtn": "DM for Order via TikTok",
     "categories": {
-      "preset": "Preset",
-      "editBanner": "Edit Banner",
-      "editMedia": "Edit Photo / Video"
+      "preset": "Presets",
+      "editBanner": "Banner Editing",
+      "editMedia": "Photo / Video Editing"
     },
-    "note": "Note: Bring your own preset • Free HD • Req CC +500p • No watermark"
+    "note": "Note: Bring your own preset • Free HD quality • Request CC +500 IDR • No watermark"
   },
   "faq": {
     "title": "Frequently Asked Questions (FAQ)",
@@ -128,18 +214,18 @@
       {
         "id": "faq-3",
         "question": "How long is the processing time?",
-        "answer": "Processing time depends on the current queue. Note: If there are no urgent queues, orders are processed as quickly as possible!"
+        "answer": "Processing time depends on the current queue. Note: If there are no queues, orders are processed as quickly as possible!"
       },
       {
         "id": "faq-4",
         "question": "Are transactions at Justdhif Store safe & guaranteed?",
-        "answer": "Yes, 100% safe and guaranteed! Since our store is newly launched, transaction proof is still growing. You can view genuine transaction receipts & testimonials directly in our WhatsApp Channel above."
+        "answer": "Yes, 100% safe and guaranteed! You can view genuine transaction receipts & testimonials directly in our WhatsApp Channel above."
       }
     ],
     "testiChannelBtn": "Join WhatsApp Testimonial Channel"
   },
   "gallery": {
-    "title": "wishlist car",
+    "title": "Dream Garage Wishlist",
     "photoCount": "of"
   },
   "shareModal": {

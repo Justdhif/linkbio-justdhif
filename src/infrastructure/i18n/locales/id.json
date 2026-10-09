@@ -1,18 +1,18 @@
 {
   "profile": {
-    "bio": "thanks for supporting me, enjoyy my products",
+    "bio": "Terima kasih telah mendukung saya, selamat menikmati produk kami",
     "status": {
-      "open": "Open Order • Fast Response",
+      "open": "Buka • Respon Cepat",
       "openSubtext": "Admin aktif melayani dan siap memproses pesanan kilat",
-      "busy": "Sibuk • Slow Response",
-      "busySubtextMonday": "Sedang ada aktivitas/antrean, pesan akan dibalas bertahap",
-      "busySubtextTueFri": "Aktivitas pagi/sekolah, pesan akan dibalas secara berkala",
-      "break": "Break • Istirahat",
+      "busy": "Sibuk • Respon Bertahap",
+      "busySubtextMonday": "Sedang ada aktivitas atau antrean, pesan akan dibalas bertahap",
+      "busySubtextTueFri": "Aktivitas sekolah atau pagi, pesan akan dibalas secara berkala",
+      "break": "Istirahat • Rehat Sejenak",
       "breakSubtext": "Rehat sejenak. Pesanan akan segera direspon setelah rehat",
-      "closed": "Closed • Istirahat Malam",
-      "closedSubtext": "Buka kembali jam 07:00 WIB pagi. Chat/order tetap diterima!",
-      "weekendClosed": "Weekend Close • Order Diproses Senin",
-      "weekendClosedSubtext": "Bebas order sekarang, pesanan akan diproses mulai Senin pagi"
+      "closed": "Tutup • Istirahat Malam",
+      "closedSubtext": "Buka kembali jam 07:00 WIB pagi. Pesanan tetap diterima!",
+      "weekendClosed": "Tutup Akhir Pekan • Diproses Hari Senin",
+      "weekendClosedSubtext": "Bebas memesan kapan saja, pesanan akan diproses mulai Senin pagi"
     }
   },
   "topBar": {
@@ -22,95 +22,181 @@
   "scheduleModal": {
     "title": "JADWAL OPERASIONAL",
     "currentTime": "Waktu Sekarang",
-    "liveClockTitle": "Jam Real-Time WIB",
+    "liveClockTitle": "Jam Waktu Nyata WIB",
     "liveClockSubtext": "Status operasional toko berganti otomatis mengikuti waktu ini",
     "nightCloseTitle": "Jam Istirahat Malam (Tutup)",
     "nightCloseDesc": "Setiap Hari: 21:00 – 07:00 WIB",
-    "prayerBreakTitle": "Jam Istirahat & Sholat (API Kemenag)",
+    "prayerBreakTitle": "Waktu Istirahat & Sholat (Kemenag RI)",
     "prayerBreakDesc": "Rehat otomatis aktif saat adzan berkumandang (~35–45 menit)",
     "prayerScheduleTitle": "Jadwal Sholat Hari Ini (WIB)",
     "prayerApiSource": "Kemenag RI • Jakarta",
     "prayerActiveBadge": "Waktu Sholat",
-    "busyTitle": "Jam Sibuk (Slow Response)",
+    "busyTitle": "Jam Sibuk (Respon Bertahap)",
     "busyMonday": "Senin: 13:00 – 18:00 WIB",
     "busyTueFri": "Selasa – Jumat: 07:00 – 12:00 WIB",
-    "busyBreakNote": "*Saat waktu sholat (Ashar/Zuhur), status otomatis berubah jadi Break.",
-    "weekendTitle": "Weekend (Sabtu & Minggu)",
-    "weekendDesc": "Bebas order kapan pun! Semua pesanan weekend akan mulai diproses pada hari Senin.",
+    "busyBreakNote": "*Saat waktu sholat (Ashar/Dzuhur), status otomatis berubah menjadi istirahat.",
+    "weekendTitle": "Akhir Pekan (Sabtu & Minggu)",
+    "weekendDesc": "Bebas memesan kapan pun! Semua pesanan akhir pekan akan diproses mulai hari Senin.",
     "footerNote": "Format waktu WIB (Waktu Indonesia Barat / Jakarta)"
   },
   "musicPlayer": {
     "play": "Putar Musik",
     "pause": "Jeda",
-    "autoPlayTitleOn": "Mode Auto-Play: Aktif (Klik untuk matikan)",
-    "autoPlayTitleOff": "Mode Auto-Play: Nonaktif (Klik untuk aktifkan)",
-    "loopTitleOn": "Auto-Loop: Aktif (Klik untuk matikan)",
-    "loopTitleOff": "Auto-Loop: Nonaktif (Klik untuk aktifkan)",
+    "autoPlayTitleOn": "Putar Otomatis: Aktif (Klik untuk matikan)",
+    "autoPlayTitleOff": "Putar Otomatis: Nonaktif (Klik untuk aktifkan)",
+    "loopTitleOn": "Ulang Otomatis: Aktif (Klik untuk matikan)",
+    "loopTitleOff": "Ulang Otomatis: Nonaktif (Klik untuk aktifkan)",
     "mute": "Bisukan Suara",
-    "unmute": "Batal Bisukan"
+    "unmute": "Bunyikan Suara"
   },
   "pricelist": {
-    "title": "Order My Products • Pricelist",
+    "title": "Daftar Produk & Layanan • Justdhif Store",
     "subtitle": "Katalog Produk & Layanan Resmi Justdhif Store",
     "sectionTitle": "Daftar Layanan & Produk",
-    "badgeOpen": "Open Order",
-    "bannerCta": "Order via WhatsApp",
+    "badgeOpen": "Buka Pesanan",
+    "bannerCta": "Pesan via WhatsApp",
     "viewProductsCta": "Lihat Daftar Produk & Harga",
     "backToHome": "Kembali ke Beranda",
-    "orderBtn": "Order",
-    "bestSeller": "Best Seller",
-    "note": "Note: Transaksi 100% aman & bergaransi • Order langsung via WhatsApp resmi • Fast response",
+    "orderBtn": "Pesan",
+    "bestSeller": "Terlaris",
+    "note": "Catatan: Transaksi 100% aman & bergaransi • Pesan langsung via WhatsApp resmi • Respon cepat",
+    "confirmationNotice": "Harap konfirmasi ketersediaan stok atau slot terlebih dahulu ke admin sebelum melakukan pembelian!",
+    "packagesLabel": "pilihan paket",
+    "categories": {
+      "all": "Semua",
+      "aplikasi": "Aplikasi",
+      "sewaBot": "Sewa Bot",
+      "lainLain": "Lain-lain"
+    },
+    "promo": {
+      "fridayTitle": "Promo Hari Jumat: Diskon 20%",
+      "fridayActive": "Promo Jumat Berkah: Diskon 20% aktif hari ini untuk semua kategori!",
+      "fridayNotice": "Semua kategori otomatis mendapatkan diskon 20% setiap pembelian di hari Jumat",
+      "appGuarantee": "Garansi 50% untuk kategori Aplikasi",
+      "fridayBadge": "-20% Hari Jumat"
+    },
     "items": {
-      "nokos": {
-        "name": "Nomor Kosong WA",
-        "price": "Start from 10k",
-        "note": "Harga bisa berubah sewaktu-waktu"
-      },
-      "jasbug": {
-        "name": "Jasbug",
-        "price": "5k",
-        "note": "Layanan jasa bug fast process",
-        "badge": "Garansi Refund 50%"
-      },
-      "jasban": {
-        "name": "Jasban",
-        "price": "20k",
-        "note": "Layanan jasa banned terpercaya",
-        "badge": "Garansi Refund 50%"
-      },
-      "murban": {
-        "name": "Murban",
-        "price": "50k",
-        "note": "Paket murid / panduan lengkap"
-      },
-      "amprem": {
-        "name": "AM Prem",
+      "am-buyer": {
+        "name": "AM Prem (Akun Pembeli)",
         "price": "1k",
-        "note": "Alight Motion Premium"
+        "note": "Alight Motion Premium Akun Pembeli",
+        "badge": "Garansi 50%"
       },
-      "jokitugas": {
-        "name": "Joki Tugas",
-        "price": "Start from 50k",
-        "note": "Joki Makalah • Joki Tugas • Joki Web",
-        "badge": "Full Revisi Sampai Puas"
+      "am-seller": {
+        "name": "AM Prem (Akun Penjual)",
+        "price": "2k",
+        "note": "Alight Motion Premium Akun Penjual",
+        "badge": "Garansi 50%"
+      },
+      "spotify": {
+        "name": "Spotify Premium",
+        "price": "11k / bulan",
+        "note": "Akun / Paket Spotify Premium",
+        "badge": "Garansi 50%"
+      },
+      "capcut-rand": {
+        "name": "CapCut Acak (3 - 6 Hari)",
+        "price": "5k",
+        "note": "Durasi 3 - 6 hari acak",
+        "badge": "Garansi 50%"
+      },
+      "capcut-invite-1w": {
+        "name": "CapCut Undangan Privat (1 Minggu)",
+        "price": "15k",
+        "note": "Durasi 1 minggu • Undangan privat",
+        "badge": "Garansi 50%"
+      },
+      "capcut-invite-1m": {
+        "name": "CapCut Undangan Privat (1 Bulan)",
+        "price": "35k",
+        "note": "Durasi 1 bulan • Undangan privat",
+        "badge": "Garansi 50%"
+      },
+      "canva-head-1m": {
+        "name": "Canva Pro Head (1 Bulan)",
+        "price": "10k",
+        "note": "Canva Pro Head • Durasi 1 bulan",
+        "badge": "Garansi 50%"
+      },
+      "canva-head-3m": {
+        "name": "Canva Pro Head (3 Bulan)",
+        "price": "20k",
+        "note": "Canva Pro Head • Durasi 3 bulan",
+        "badge": "Garansi 50%"
+      },
+      "canva-private-3m": {
+        "name": "Canva Pro Privat (3 Bulan)",
+        "price": "5k",
+        "note": "Canva Pro Privat • Durasi 3 bulan",
+        "badge": "Garansi 50%"
+      },
+      "canva-edu": {
+        "name": "Canva Pro Edu Undangan",
+        "price": "2k",
+        "note": "Tautan undangan Canva Pro Edu",
+        "badge": "Garansi 50%"
+      },
+      "netflix-shr": {
+        "name": "Netflix Berbagi 20 Hari + 1P2U",
+        "price": "26k",
+        "note": "Berbagi 20 hari • 1 Profil 2 Pengguna",
+        "badge": "Garansi 50%"
+      },
+      "wink-14d": {
+        "name": "Wink (10 - 14 Hari) Semua Perangkat",
+        "price": "11k",
+        "note": "Mendukung semua perangkat • Durasi 10 - 14 hari",
+        "badge": "Garansi 50%"
+      },
+      "wink-7d": {
+        "name": "Wink (3 - 7 Hari) Semua Perangkat",
+        "price": "6k",
+        "note": "Mendukung semua perangkat • Durasi 3 - 7 hari",
+        "badge": "Garansi 50%"
+      },
+      "gemini-pro": {
+        "name": "Gemini Pro Undangan 1 Tahun+ (18 Bulan)",
+        "price": "50k",
+        "note": "Undangan Google Gemini Pro • Masa aktif 18 bulan",
+        "badge": "Garansi 50%"
+      },
+      "bot-1w": {
+        "name": "Sewa Bot (1 Minggu)",
+        "price": "5k / minggu",
+        "note": "Layanan sewa bot WhatsApp • 1 minggu"
+      },
+      "bot-1m": {
+        "name": "Sewa Bot (1 Bulan)",
+        "price": "15k / bulan",
+        "note": "Layanan sewa bot WhatsApp • 1 bulan"
+      },
+      "bot-3m": {
+        "name": "Sewa Bot (3 Bulan)",
+        "price": "35k / 3 bulan",
+        "note": "Layanan sewa bot WhatsApp • 3 bulan"
+      },
+      "bot-1y": {
+        "name": "Sewa Bot (1 Tahun)",
+        "price": "50k / tahun",
+        "note": "Layanan sewa bot WhatsApp • 1 tahun"
       }
     }
   },
   "achimoPricelist": {
-    "title": "Paid Edit by Achimoo • Price List",
-    "viewProductsCta": "Lihat Price List Paid Edit",
+    "title": "Jasa Edit Achimoo • Daftar Harga",
+    "viewProductsCta": "Lihat Daftar Harga Jasa Edit",
     "backToHome": "Kembali ke Beranda",
     "subtitle": "Katalog Jasa Edit Video & Foto by Achimoo",
     "presetSection": "Preset",
     "bannerSection": "Edit Banner",
     "mediaSection": "Edit Foto / Video",
-    "orderDmBtn": "DM for Order via TikTok",
+    "orderDmBtn": "Pesan via DM TikTok",
     "categories": {
       "preset": "Preset",
       "editBanner": "Edit Banner",
       "editMedia": "Edit Foto / Video"
     },
-    "note": "Note: Bawa preset sendiri • Free HD • Req CC +500p • No watermark"
+    "note": "Catatan: Bawa preset sendiri • Gratis resolusi HD • Permintaan CC +500p • Tanpa watermark"
   },
   "faq": {
     "title": "Tanya Jawab (FAQ)",
@@ -118,7 +204,7 @@
       {
         "id": "faq-1",
         "question": "Bagaimana cara melakukan pemesanan?",
-        "answer": "Cukup pilih layanan pada daftar Pricelist di atas atau klik tombol \"order my products\". Anda akan otomatis terhubung ke WhatsApp resmi admin dengan format pesanan yang siap dikirim."
+        "answer": "Cukup pilih layanan pada daftar harga di atas atau klik tombol pemesanan. Anda akan otomatis terhubung ke WhatsApp resmi admin dengan format pesanan yang siap dikirim."
       },
       {
         "id": "faq-2",
@@ -133,23 +219,23 @@
       {
         "id": "faq-4",
         "question": "Apakah transaksi di Justdhif Store aman & bergaransi?",
-        "answer": "Iya, transaksi 100% aman dan bergaransi! Karena kami baru memulai store ini, bukti transaksi memang belum terlalu banyak. Namun kamu bisa memantau bukti transaksi dan testimoni langsung di Saluran WhatsApp Testi kami melalui link di atas (atau klik tombol testi)."
+        "answer": "Iya, transaksi 100% aman dan bergaransi! Karena kami baru memulai toko ini, bukti transaksi memang belum terlalu banyak. Namun Anda bisa memantau bukti transaksi dan testimoni langsung di Saluran WhatsApp Testimoni kami melalui tautan di atas."
       }
     ],
-    "testiChannelBtn": "Masuk Saluran Testimoni WA"
+    "testiChannelBtn": "Saluran Testimoni WhatsApp"
   },
   "gallery": {
-    "title": "wishlist car",
+    "title": "Koleksi Mobil Impian",
     "photoCount": "dari"
   },
   "shareModal": {
     "title": "Bagikan Tautan",
-    "copySuccess": "Tautan berhasil disalin ke clipboard!",
+    "copySuccess": "Tautan berhasil disalin ke papan klip!",
     "nativeShare": "Buka Opsi Berbagi Sistem",
     "copyBtn": "Salin"
   },
   "footer": {
-    "subtitle": "Justdhif Store • Bio Link",
-    "rights": "All rights reserved."
+    "subtitle": "Justdhif Store • Tautan Bio",
+    "rights": "Seluruh hak cipta dilindungi."
   }
 }

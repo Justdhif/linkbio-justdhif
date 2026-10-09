@@ -2,6 +2,9 @@ export interface PricelistItem {
   id: string
   name: string
   price: string
+  category?: 'aplikasi' | 'sewa-bot' | 'lain-lain' | string
+  appGroup?: string
+  variantName?: string
   note?: string
   isPopular?: boolean
   badgeText?: string

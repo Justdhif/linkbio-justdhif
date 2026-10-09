@@ -47,10 +47,10 @@ export function getJakartaLiveStatus(
   if (isWeekend) {
     return {
       status: 'weekend_closed',
-      label: isEn ? 'Weekend Close • Processed on Monday' : 'Weekend Close • Order Diproses Senin',
+      label: isEn ? 'Weekend Closed • Processed on Monday' : 'Tutup Akhir Pekan • Diproses Senin',
       subtext: isEn
         ? 'Feel free to order now, processing starts Monday morning'
-        : 'Bebas order sekarang, pesanan akan diproses mulai Senin pagi',
+        : 'Bebas memesan sekarang, pesanan akan diproses mulai Senin pagi',
       dotColorClass: 'bg-purple-500',
       pingColorClass: 'bg-purple-400',
       badgeBgClass: 'bg-purple-950/40',
@@ -64,10 +64,10 @@ export function getJakartaLiveStatus(
   if (currentTotalMinutes >= 21 * 60 || currentTotalMinutes < 7 * 60) {
     return {
       status: 'closed',
-      label: isEn ? 'Closed • Night Rest' : 'Closed • Istirahat Malam',
+      label: isEn ? 'Closed • Night Rest' : 'Tutup • Istirahat Malam',
       subtext: isEn
         ? 'Reopening at 07:00 AM WIB. Orders/chats are still accepted!'
-        : 'Buka kembali jam 07:00 WIB pagi. Chat/order tetap diterima!',
+        : 'Buka kembali jam 07:00 WIB pagi. Pesan tetap diterima!',
       dotColorClass: 'bg-rose-500',
       badgeBgClass: 'bg-rose-950/40',
       borderClass: 'border-rose-400/30',
@@ -97,7 +97,7 @@ export function getJakartaLiveStatus(
 
     return {
       status: 'break',
-      label: isEn ? `Break • ${prayerName} Prayer` : `Break • Sholat ${prayerName}`,
+      label: isEn ? `Break • ${prayerName} Prayer` : `Istirahat • Sholat ${prayerName}`,
       subtext: isEn
         ? 'Taking a short rest & prayer break. Orders will be responded to shortly.'
         : 'Rehat sejenak & ibadah sholat. Pesanan akan segera direspon setelah rehat.',
@@ -115,7 +115,7 @@ export function getJakartaLiveStatus(
   if (isMonday && currentTotalMinutes >= 13 * 60 && currentTotalMinutes < 18 * 60) {
     return {
       status: 'busy',
-      label: isEn ? 'Busy • Slow Response' : 'Sibuk • Slow Response',
+      label: isEn ? 'Busy • Slow Response' : 'Sibuk • Respon Bertahap',
       subtext: isEn
         ? 'Currently active / in queue, messages will be answered gradually'
         : 'Sedang ada aktivitas/antrean, pesan akan dibalas bertahap',
@@ -131,7 +131,7 @@ export function getJakartaLiveStatus(
   if (isTueToFri && currentTotalMinutes >= 7 * 60 && currentTotalMinutes < 12 * 60) {
     return {
       status: 'busy',
-      label: isEn ? 'Busy • Slow Response' : 'Sibuk • Slow Response',
+      label: isEn ? 'Busy • Slow Response' : 'Sibuk • Respon Bertahap',
       subtext: isEn
         ? 'Morning activities / school, replies will be sent periodically'
         : 'Aktivitas pagi/sekolah, pesan akan dibalas secara berkala',
@@ -140,14 +140,14 @@ export function getJakartaLiveStatus(
       badgeBgClass: 'bg-yellow-950/40',
       borderClass: 'border-yellow-300/30',
       canOrder: true,
-      nextScheduleText: isEn ? 'Fast Response after lunch break' : 'Fast Response setelah istirahat siang',
+      nextScheduleText: isEn ? 'Fast response after lunch break' : 'Respon cepat setelah istirahat siang',
     }
   }
 
   // 5. Normal Open / Fast Response
   return {
     status: 'open',
-    label: isEn ? 'Open Order • Fast Response' : 'Open Order • Fast Response',
+    label: isEn ? 'Open • Fast Response' : 'Buka • Respon Cepat',
     subtext: isEn
       ? 'Admin is active and ready for fast processing'
       : 'Admin aktif melayani dan siap memproses pesanan kilat',
@@ -159,3 +159,33 @@ export function getJakartaLiveStatus(
     nextScheduleText: isEn ? 'Open until 09:00 PM WIB' : 'Buka sampai 21:00 WIB',
   }
 }
+
+/**
+ * Check if today is Friday in Jakarta (WIB / UTC+7)
+ */
+export function isFridayInJakarta(customDate?: Date): boolean {
+  const now = customDate || new Date()
+  const jakartaTimeString = now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
+  const jakartaDate = new Date(jakartaTimeString)
+  return jakartaDate.getDay() === 5 // 5 = Friday
+}
+
+/**
+ * Calculates a 20% discount on prices like "10k", "11k / bulan", "50k / tahun"
+ */
+export function calculateFridayDiscount(priceString: string): string | null {
+  const match = priceString.match(/^(\d+(?:\.\d+)?)\s*k(\s*\/.*)?$/i)
+  if (!match) return null
+
+  const num = parseFloat(match[1])
+  if (isNaN(num)) return null
+
+  const discounted = num * 0.8 // 20% discount
+  const formattedNum = Number.isInteger(discounted)
+    ? discounted.toString()
+    : discounted.toFixed(1).replace(/\.0$/, '')
+
+  const suffix = match[2] || ''
+  return `${formattedNum}k${suffix}`
+}
+
