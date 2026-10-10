@@ -282,12 +282,6 @@ export const ProductsPageView: React.FC<ProductsPageViewProps> = ({
               </span>
             </div>
           </div>
-
-          {/* Garansi 50% Badge per App */}
-          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-800 bg-sky-50 border border-sky-300 px-2 py-0.5 rounded-md shadow-2xs">
-            <ShieldCheck className="h-3 w-3 text-sky-600" />
-            <span>{t.pricelist.promo?.appGuarantee || (isId ? 'Garansi 50%' : '50% Guarantee')}</span>
-          </span>
         </div>
 
         {/* List of variants under this app */}

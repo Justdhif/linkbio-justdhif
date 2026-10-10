@@ -151,12 +151,6 @@ export const PricelistWidget: React.FC<PricelistWidgetProps> = ({
                         <Flame className="h-2.5 w-2.5 fill-rose-500" /> {t.pricelist.bestSeller}
                       </span>
                     )}
-                    {item.category === 'aplikasi' && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-800 bg-sky-50 border border-sky-300 px-2 py-0.5 rounded-md shadow-2xs">
-                        <ShieldCheck className="h-3 w-3 text-sky-600" />
-                        <span>{t.pricelist.promo?.appGuarantee || (isId ? 'Garansi 50%' : '50% Guarantee')}</span>
-                      </span>
-                    )}
                     {item.badgeText && item.category !== 'aplikasi' && (
                       <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-md shadow-2xs">
                         <ShieldCheck className="h-3 w-3 text-emerald-600" />
