@@ -15,11 +15,20 @@ import { Footer } from './components/footer/Footer'
 import { LinkItem } from '../domain/entities/link.entity'
 import { Loader2 } from 'lucide-react'
 import { useLanguage } from '../infrastructure/i18n/language-context'
+import { useMusic } from '../infrastructure/services/music-context'
 
 export const App: React.FC = () => {
   const { t } = useLanguage()
   const { profile, isLoading, error } = useProfile()
   const { copy, isCopied } = useClipboard()
+  const { setTrack } = useMusic()
+
+  // Set music track globally when profile data loads
+  React.useEffect(() => {
+    if (profile?.musicTrack) {
+      setTrack(profile.musicTrack)
+    }
+  }, [profile?.musicTrack, setTrack])
 
   // Navigation state between home profile, products page, and Achimo price list
   const [currentView, setCurrentView] = useState<'home' | 'products' | 'achimo'>('home')

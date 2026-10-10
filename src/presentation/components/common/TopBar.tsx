@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Share2, Globe } from 'lucide-react'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
+import { MiniAudioController } from './MiniAudioController'
 
 interface TopBarProps {
   onShareClick: () => void
@@ -37,8 +38,11 @@ export const TopBar: React.FC<TopBarProps> = ({ onShareClick }) => {
           />
         </motion.button>
 
-        {/* Right side controls: Language switcher + Share button */}
-        <div className="flex items-center gap-2 pointer-events-auto">
+        {/* Right side controls: Music Controller + Language switcher + Share button */}
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
+          {/* Mini Audio Controller (persistent across all pages) */}
+          <MiniAudioController />
+
           {/* Language Toggle Button */}
           <motion.button
             onClick={toggleLanguage}

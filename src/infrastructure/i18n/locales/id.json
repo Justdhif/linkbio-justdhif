@@ -47,7 +47,8 @@
     "loopTitleOn": "Ulang Otomatis: Aktif (Klik untuk matikan)",
     "loopTitleOff": "Ulang Otomatis: Nonaktif (Klik untuk aktifkan)",
     "mute": "Bisukan Suara",
-    "unmute": "Bunyikan Suara"
+    "unmute": "Bunyikan Suara",
+    "nowPlaying": "Sedang Memutar"
   },
   "pricelist": {
     "title": "Daftar Produk & Layanan • Justdhif Store",

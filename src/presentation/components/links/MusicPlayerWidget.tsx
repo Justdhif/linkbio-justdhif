@@ -1,143 +1,36 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, Volume2, VolumeX, Repeat, Zap } from 'lucide-react'
 import { MusicTrack } from '../../../domain/entities/music.entity'
 import { useLanguage } from '../../../infrastructure/i18n/language-context'
+import { useMusic } from '../../../infrastructure/services/music-context'
 
 interface MusicPlayerWidgetProps {
-  track: MusicTrack
+  track?: MusicTrack
 }
 
-export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) => {
+export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = () => {
   const { t } = useLanguage()
-  const [isPlaying, setIsPlaying] = useState<boolean>(false)
-  const [currentTime, setCurrentTime] = useState<number>(0)
-  const [duration, setDuration] = useState<number>(0)
-  const [isMuted, setIsMuted] = useState<boolean>(false)
-  const [isLooping, setIsLooping] = useState<boolean>(true)
-  const [isAutoPlay, setIsAutoPlay] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('justdhif_autoplay')
-      return stored !== 'false'
-    }
-    return true
-  })
+  const {
+    track,
+    isPlaying,
+    currentTime,
+    duration,
+    isMuted,
+    isLooping,
+    isAutoPlay,
+    togglePlay,
+    toggleLoop,
+    toggleAutoPlay,
+    toggleMute,
+    seek,
+  } = useMusic()
 
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const userPausedRef = useRef<boolean>(false)
-
-  // Autoplay handler with fallback for browser autoplay policies
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    // If autoplay is disabled by user, don't attempt
-    if (!isAutoPlay) return
-
-    const tryPlay = () => {
-      if (userPausedRef.current) return
-      audio
-        .play()
-        .then(() => {
-          setIsPlaying(true)
-        })
-        .catch(() => {
-          // Browser prevented autoplay before interaction, wait for user gesture
-        })
-    }
-
-    // 1. Try immediate autoplay
-    tryPlay()
-
-    // 2. Fallback: play on the very first user interaction anywhere on the page
-    const handleFirstInteraction = () => {
-      if (!userPausedRef.current && audio.paused && isAutoPlay) {
-        tryPlay()
-      }
-      removeListeners()
-    }
-
-    const removeListeners = () => {
-      window.removeEventListener('click', handleFirstInteraction)
-      window.removeEventListener('touchstart', handleFirstInteraction)
-      window.removeEventListener('scroll', handleFirstInteraction)
-      window.removeEventListener('keydown', handleFirstInteraction)
-    }
-
-    window.addEventListener('click', handleFirstInteraction, { passive: true })
-    window.addEventListener('touchstart', handleFirstInteraction, { passive: true })
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true })
-    window.addEventListener('keydown', handleFirstInteraction, { passive: true })
-
-    return () => {
-      removeListeners()
-    }
-  }, [isAutoPlay])
-
-  const togglePlay = () => {
-    if (!audioRef.current) return
-    if (isPlaying) {
-      audioRef.current.pause()
-      setIsPlaying(false)
-      userPausedRef.current = true // user explicitly paused, keep paused
-    } else {
-      userPausedRef.current = false
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.log('Audio autoplay prevented:', err))
-    }
-  }
-
-  const toggleLoop = () => {
-    setIsLooping((prev) => !prev)
-  }
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlay((prev) => {
-      const next = !prev
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('justdhif_autoplay', String(next))
-      }
-      return next
-    })
-  }
-
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime)
-    }
-  }
-
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration || 0)
-    }
-  }
+  if (!track) return null
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = parseFloat(e.target.value)
-    if (audioRef.current) {
-      audioRef.current.currentTime = newTime
-      setCurrentTime(newTime)
-    }
-  }
-
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
-  const handleEnded = () => {
-    if (isLooping && audioRef.current) {
-      audioRef.current.currentTime = 0
-      audioRef.current.play().catch(() => {})
-    } else {
-      setIsPlaying(false)
-      setCurrentTime(0)
-    }
+    seek(newTime)
   }
 
   const formatTime = (seconds: number) => {
@@ -156,21 +49,7 @@ export const MusicPlayerWidget: React.FC<MusicPlayerWidgetProps> = ({ track }) =
       whileHover={{ y: -2, transition: { duration: 0.15 } }}
       className="relative w-full rounded-[28px] border-2 border-black bg-white p-4 sm:p-5 shadow-neo transition-shadow duration-200 hover:shadow-neo-lg text-black"
     >
-      {/* Hidden Native Audio Element */}
-      <audio
-        ref={audioRef}
-        src={track.audioUrl}
-        loop={isLooping}
-        autoPlay={isAutoPlay}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onEnded={handleEnded}
-        preload="auto"
-      />
-
-      {/* Header Row: Cover + Info + Spotify Link */}
+      {/* Header Row: Cover + Info + Soundwave */}
       <div className="flex items-center gap-3.5 sm:gap-4">
         {/* Animated Vinyl Cover: pauses in place without spinning backwards */}
         <div className="relative flex-shrink-0">

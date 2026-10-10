@@ -47,7 +47,8 @@
     "loopTitleOn": "Auto-Loop: On (Click to turn off)",
     "loopTitleOff": "Auto-Loop: Off (Click to turn on)",
     "mute": "Mute Audio",
-    "unmute": "Unmute Audio"
+    "unmute": "Unmute Audio",
+    "nowPlaying": "Now Playing"
   },
   "pricelist": {
     "title": "Products & Services • Pricelist",
